@@ -1,0 +1,8135 @@
+[
+  {
+    "id": "9ball_r1",
+    "name": "9-Ball Rack 1",
+    "rack_num": 1,
+    "game": "9-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "A",
+      "col": 9.0,
+      "norm_x": 0.1633,
+      "norm_y": 0.0
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 11.0,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.2041,
+        "norm_y": 0.08
+      },
+      {
+        "number": 2,
+        "col": 27.5,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.5408,
+        "norm_y": 0.88
+      },
+      {
+        "number": 3,
+        "col": 26.0,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.5102,
+        "norm_y": 0.52
+      },
+      {
+        "number": 4,
+        "col": 30.6,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.6041,
+        "norm_y": 0.28
+      },
+      {
+        "number": 5,
+        "col": 33.2,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.6571,
+        "norm_y": 0.6
+      },
+      {
+        "number": 6,
+        "col": 10.4,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.1918,
+        "norm_y": 0.8
+      },
+      {
+        "number": 7,
+        "col": 2.2,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.0245,
+        "norm_y": 0.48
+      },
+      {
+        "number": 8,
+        "col": 45.3,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.9041,
+        "norm_y": 0.28
+      },
+      {
+        "number": 9,
+        "col": 8.7,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.1571,
+        "norm_y": 0.08
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r2",
+    "name": "9-Ball Rack 2",
+    "rack_num": 2,
+    "game": "9-Ball",
+    "difficulty": "BEGINNER",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "T",
+      "col": 22.0,
+      "norm_x": 0.4286,
+      "norm_y": 0.76
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 21.4,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.4163,
+        "norm_y": 0.48
+      },
+      {
+        "number": 2,
+        "col": 6.6,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.1143,
+        "norm_y": 0.12
+      },
+      {
+        "number": 3,
+        "col": 35.1,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.6959,
+        "norm_y": 0.28
+      },
+      {
+        "number": 4,
+        "col": 23.4,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.4571,
+        "norm_y": 0.88
+      },
+      {
+        "number": 5,
+        "col": 17.1,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.3286,
+        "norm_y": 0.16
+      },
+      {
+        "number": 6,
+        "col": 30.0,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.5918,
+        "norm_y": 0.36
+      },
+      {
+        "number": 7,
+        "col": 19.9,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.3857,
+        "norm_y": 0.68
+      },
+      {
+        "number": 8,
+        "col": 11.9,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.2224,
+        "norm_y": 0.28
+      },
+      {
+        "number": 9,
+        "col": 18.9,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.3653,
+        "norm_y": 0.88
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r3",
+    "name": "9-Ball Rack 3",
+    "rack_num": 3,
+    "game": "9-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "J",
+      "col": 39.0,
+      "norm_x": 0.7755,
+      "norm_y": 0.36
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 41.0,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.8163,
+        "norm_y": 0.52
+      },
+      {
+        "number": 2,
+        "col": 22.8,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.4449,
+        "norm_y": 0.6
+      },
+      {
+        "number": 3,
+        "col": 19.5,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.3776,
+        "norm_y": 0.76
+      },
+      {
+        "number": 4,
+        "col": 33.6,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.6653,
+        "norm_y": 0.6
+      },
+      {
+        "number": 5,
+        "col": 25.8,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.5061,
+        "norm_y": 0.52
+      },
+      {
+        "number": 6,
+        "col": 21.7,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.4224,
+        "norm_y": 0.36
+      },
+      {
+        "number": 7,
+        "col": 38.4,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.7633,
+        "norm_y": 0.72
+      },
+      {
+        "number": 8,
+        "col": 3.8,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.0571,
+        "norm_y": 0.76
+      },
+      {
+        "number": 9,
+        "col": 8.7,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.1571,
+        "norm_y": 0.24
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r4",
+    "name": "9-Ball Rack 4",
+    "rack_num": 4,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "K",
+      "col": 18.0,
+      "norm_x": 0.3469,
+      "norm_y": 0.4
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 12.7,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.2388,
+        "norm_y": 0.32
+      },
+      {
+        "number": 2,
+        "col": 32.9,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.651,
+        "norm_y": 0.64
+      },
+      {
+        "number": 3,
+        "col": 44.7,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.8918,
+        "norm_y": 0.2
+      },
+      {
+        "number": 4,
+        "col": 40.7,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.8102,
+        "norm_y": 0.76
+      },
+      {
+        "number": 5,
+        "col": 4.2,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.0653,
+        "norm_y": 0.8
+      },
+      {
+        "number": 6,
+        "col": 37.7,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.749,
+        "norm_y": 0.4
+      },
+      {
+        "number": 7,
+        "col": 20.8,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.4041,
+        "norm_y": 0.8
+      },
+      {
+        "number": 8,
+        "col": 2.0,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.0204,
+        "norm_y": 0.36
+      },
+      {
+        "number": 9,
+        "col": 43.2,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.8612,
+        "norm_y": 0.24
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r5",
+    "name": "9-Ball Rack 5",
+    "rack_num": 5,
+    "game": "9-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "O",
+      "col": 43.0,
+      "norm_x": 0.8571,
+      "norm_y": 0.56
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 44.2,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.8816,
+        "norm_y": 0.4
+      },
+      {
+        "number": 2,
+        "col": 38.8,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.7714,
+        "norm_y": 0.36
+      },
+      {
+        "number": 3,
+        "col": 17.9,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.3449,
+        "norm_y": 0.08
+      },
+      {
+        "number": 4,
+        "col": 7.7,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.1367,
+        "norm_y": 0.44
+      },
+      {
+        "number": 5,
+        "col": 15.3,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.2918,
+        "norm_y": 0.16
+      },
+      {
+        "number": 6,
+        "col": 8.1,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.1449,
+        "norm_y": 0.28
+      },
+      {
+        "number": 7,
+        "col": 42.1,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.8388,
+        "norm_y": 0.4
+      },
+      {
+        "number": 8,
+        "col": 24.6,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.4816,
+        "norm_y": 0.2
+      },
+      {
+        "number": 9,
+        "col": 25.3,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.4959,
+        "norm_y": 0.68
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r6",
+    "name": "9-Ball Rack 6",
+    "rack_num": 6,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "F",
+      "col": 21.0,
+      "norm_x": 0.4082,
+      "norm_y": 0.2
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 11.7,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.2184,
+        "norm_y": 0.08
+      },
+      {
+        "number": 2,
+        "col": 27.0,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.5306,
+        "norm_y": 0.08
+      },
+      {
+        "number": 3,
+        "col": 18.8,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.3633,
+        "norm_y": 0.56
+      },
+      {
+        "number": 4,
+        "col": 22.0,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.4286,
+        "norm_y": 0.52
+      },
+      {
+        "number": 5,
+        "col": 2.2,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.0245,
+        "norm_y": 0.6
+      },
+      {
+        "number": 6,
+        "col": 37.9,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.7531,
+        "norm_y": 0.8
+      },
+      {
+        "number": 7,
+        "col": 23.5,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.4592,
+        "norm_y": 0.52
+      },
+      {
+        "number": 8,
+        "col": 5.5,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.0918,
+        "norm_y": 0.88
+      },
+      {
+        "number": 9,
+        "col": 15.4,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.2939,
+        "norm_y": 0.4
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r7",
+    "name": "9-Ball Rack 7",
+    "rack_num": 7,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "H",
+      "col": 14.0,
+      "norm_x": 0.2653,
+      "norm_y": 0.28
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 10.5,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.1939,
+        "norm_y": 0.16
+      },
+      {
+        "number": 2,
+        "col": 22.6,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.4408,
+        "norm_y": 0.12
+      },
+      {
+        "number": 3,
+        "col": 44.3,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.8837,
+        "norm_y": 0.24
+      },
+      {
+        "number": 4,
+        "col": 9.9,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.1816,
+        "norm_y": 0.64
+      },
+      {
+        "number": 5,
+        "col": 4.4,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.0694,
+        "norm_y": 0.28
+      },
+      {
+        "number": 6,
+        "col": 11.2,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.2082,
+        "norm_y": 0.68
+      },
+      {
+        "number": 7,
+        "col": 1.8,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.0163,
+        "norm_y": 0.4
+      },
+      {
+        "number": 8,
+        "col": 33.8,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.6694,
+        "norm_y": 0.12
+      },
+      {
+        "number": 9,
+        "col": 36.8,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.7306,
+        "norm_y": 0.56
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r8",
+    "name": "9-Ball Rack 8",
+    "rack_num": 8,
+    "game": "9-Ball",
+    "difficulty": "BEGINNER",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "P",
+      "col": 41.0,
+      "norm_x": 0.8163,
+      "norm_y": 0.6
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 30.7,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.6061,
+        "norm_y": 0.28
+      },
+      {
+        "number": 2,
+        "col": 15.1,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.2878,
+        "norm_y": 0.32
+      },
+      {
+        "number": 3,
+        "col": 27.9,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.549,
+        "norm_y": 0.92
+      },
+      {
+        "number": 4,
+        "col": 22.1,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.4306,
+        "norm_y": 0.32
+      },
+      {
+        "number": 5,
+        "col": 21.0,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.4082,
+        "norm_y": 0.24
+      },
+      {
+        "number": 6,
+        "col": 37.9,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.7531,
+        "norm_y": 0.6
+      },
+      {
+        "number": 7,
+        "col": 13.5,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.2551,
+        "norm_y": 0.48
+      },
+      {
+        "number": 8,
+        "col": 34.5,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.6837,
+        "norm_y": 0.28
+      },
+      {
+        "number": 9,
+        "col": 28.8,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.5673,
+        "norm_y": 0.28
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r9",
+    "name": "9-Ball Rack 9",
+    "rack_num": 9,
+    "game": "9-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "J",
+      "col": 19.0,
+      "norm_x": 0.3673,
+      "norm_y": 0.36
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 23.6,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.4612,
+        "norm_y": 0.72
+      },
+      {
+        "number": 2,
+        "col": 11.8,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.2204,
+        "norm_y": 0.96
+      },
+      {
+        "number": 3,
+        "col": 21.6,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.4204,
+        "norm_y": 0.24
+      },
+      {
+        "number": 4,
+        "col": 16.6,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.3184,
+        "norm_y": 0.2
+      },
+      {
+        "number": 5,
+        "col": 1.9,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.0184,
+        "norm_y": 0.68
+      },
+      {
+        "number": 6,
+        "col": 21.6,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.4204,
+        "norm_y": 0.4
+      },
+      {
+        "number": 7,
+        "col": 46.5,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.9286,
+        "norm_y": 0.72
+      },
+      {
+        "number": 8,
+        "col": 16.2,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.3102,
+        "norm_y": 0.96
+      },
+      {
+        "number": 9,
+        "col": 5.4,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.0898,
+        "norm_y": 0.84
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r10",
+    "name": "9-Ball Rack 10",
+    "rack_num": 10,
+    "game": "9-Ball",
+    "difficulty": "BEGINNER",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "J",
+      "col": 17.0,
+      "norm_x": 0.3265,
+      "norm_y": 0.36
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 13.5,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.2551,
+        "norm_y": 0.24
+      },
+      {
+        "number": 2,
+        "col": 22.4,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.4367,
+        "norm_y": 0.48
+      },
+      {
+        "number": 3,
+        "col": 41.4,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.8245,
+        "norm_y": 0.6
+      },
+      {
+        "number": 4,
+        "col": 26.4,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.5184,
+        "norm_y": 0.68
+      },
+      {
+        "number": 5,
+        "col": 20.1,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.3898,
+        "norm_y": 0.64
+      },
+      {
+        "number": 6,
+        "col": 38.6,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.7673,
+        "norm_y": 0.52
+      },
+      {
+        "number": 7,
+        "col": 48.6,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.9714,
+        "norm_y": 0.52
+      },
+      {
+        "number": 8,
+        "col": 43.0,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.8571,
+        "norm_y": 0.72
+      },
+      {
+        "number": 9,
+        "col": 35.9,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.7122,
+        "norm_y": 0.24
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r11",
+    "name": "9-Ball Rack 11",
+    "rack_num": 11,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "H",
+      "col": 32.0,
+      "norm_x": 0.6327,
+      "norm_y": 0.28
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 36.3,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.7204,
+        "norm_y": 0.2
+      },
+      {
+        "number": 2,
+        "col": 3.6,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.0531,
+        "norm_y": 0.88
+      },
+      {
+        "number": 3,
+        "col": 8.0,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.1429,
+        "norm_y": 0.88
+      },
+      {
+        "number": 4,
+        "col": 14.0,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.2653,
+        "norm_y": 0.88
+      },
+      {
+        "number": 5,
+        "col": 40.2,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.8,
+        "norm_y": 0.36
+      },
+      {
+        "number": 6,
+        "col": 33.8,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.6694,
+        "norm_y": 0.44
+      },
+      {
+        "number": 7,
+        "col": 2.7,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.0347,
+        "norm_y": 0.6
+      },
+      {
+        "number": 8,
+        "col": 16.9,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.3245,
+        "norm_y": 0.88
+      },
+      {
+        "number": 9,
+        "col": 48.2,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.9633,
+        "norm_y": 0.2
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r12",
+    "name": "9-Ball Rack 12",
+    "rack_num": 12,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "H",
+      "col": 5.0,
+      "norm_x": 0.0816,
+      "norm_y": 0.28
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 4.7,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.0755,
+        "norm_y": 0.64
+      },
+      {
+        "number": 2,
+        "col": 40.7,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.8102,
+        "norm_y": 0.4
+      },
+      {
+        "number": 3,
+        "col": 22.1,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.4306,
+        "norm_y": 0.28
+      },
+      {
+        "number": 4,
+        "col": 21.9,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.4265,
+        "norm_y": 0.88
+      },
+      {
+        "number": 5,
+        "col": 15.6,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.298,
+        "norm_y": 0.76
+      },
+      {
+        "number": 6,
+        "col": 10.3,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.1898,
+        "norm_y": 0.36
+      },
+      {
+        "number": 7,
+        "col": 40.2,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.8,
+        "norm_y": 0.72
+      },
+      {
+        "number": 8,
+        "col": 10.1,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.1857,
+        "norm_y": 0.56
+      },
+      {
+        "number": 9,
+        "col": 41.2,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.8204,
+        "norm_y": 0.96
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r13",
+    "name": "9-Ball Rack 13",
+    "rack_num": 13,
+    "game": "9-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "D",
+      "col": 22.0,
+      "norm_x": 0.4286,
+      "norm_y": 0.12
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 28.7,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.5653,
+        "norm_y": 0.12
+      },
+      {
+        "number": 2,
+        "col": 24.1,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.4714,
+        "norm_y": 0.96
+      },
+      {
+        "number": 3,
+        "col": 24.0,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.4694,
+        "norm_y": 0.4
+      },
+      {
+        "number": 4,
+        "col": 26.6,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.5224,
+        "norm_y": 0.6
+      },
+      {
+        "number": 5,
+        "col": 37.7,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.749,
+        "norm_y": 0.84
+      },
+      {
+        "number": 6,
+        "col": 32.5,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.6429,
+        "norm_y": 0.96
+      },
+      {
+        "number": 7,
+        "col": 9.5,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.1735,
+        "norm_y": 0.12
+      },
+      {
+        "number": 8,
+        "col": 13.7,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.2592,
+        "norm_y": 0.56
+      },
+      {
+        "number": 9,
+        "col": 45.1,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.9,
+        "norm_y": 0.44
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r14",
+    "name": "9-Ball Rack 14",
+    "rack_num": 14,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "D",
+      "col": 10.0,
+      "norm_x": 0.1837,
+      "norm_y": 0.12
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 9.6,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.1755,
+        "norm_y": 0.36
+      },
+      {
+        "number": 2,
+        "col": 48.4,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.9673,
+        "norm_y": 0.16
+      },
+      {
+        "number": 3,
+        "col": 36.6,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.7265,
+        "norm_y": 0.56
+      },
+      {
+        "number": 4,
+        "col": 31.7,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.6265,
+        "norm_y": 0.96
+      },
+      {
+        "number": 5,
+        "col": 19.9,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.3857,
+        "norm_y": 0.92
+      },
+      {
+        "number": 6,
+        "col": 36.1,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.7163,
+        "norm_y": 0.64
+      },
+      {
+        "number": 7,
+        "col": 8.9,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.1612,
+        "norm_y": 0.72
+      },
+      {
+        "number": 8,
+        "col": 2.8,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.0367,
+        "norm_y": 0.12
+      },
+      {
+        "number": 9,
+        "col": 28.3,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.5571,
+        "norm_y": 0.88
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r15",
+    "name": "9-Ball Rack 15",
+    "rack_num": 15,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "G",
+      "col": 36.0,
+      "norm_x": 0.7143,
+      "norm_y": 0.24
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 38.1,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.7571,
+        "norm_y": 0.4
+      },
+      {
+        "number": 2,
+        "col": 3.8,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.0571,
+        "norm_y": 0.64
+      },
+      {
+        "number": 3,
+        "col": 17.5,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.3367,
+        "norm_y": 0.12
+      },
+      {
+        "number": 4,
+        "col": 33.5,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.6633,
+        "norm_y": 0.84
+      },
+      {
+        "number": 5,
+        "col": 19.1,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.3694,
+        "norm_y": 0.72
+      },
+      {
+        "number": 6,
+        "col": 43.0,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.8571,
+        "norm_y": 0.44
+      },
+      {
+        "number": 7,
+        "col": 30.3,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.598,
+        "norm_y": 0.8
+      },
+      {
+        "number": 8,
+        "col": 35.2,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.698,
+        "norm_y": 0.28
+      },
+      {
+        "number": 9,
+        "col": 45.8,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.9143,
+        "norm_y": 0.08
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r16",
+    "name": "9-Ball Rack 16",
+    "rack_num": 16,
+    "game": "9-Ball",
+    "difficulty": "BEGINNER",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "P",
+      "col": 28.0,
+      "norm_x": 0.551,
+      "norm_y": 0.6
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 28.3,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.5571,
+        "norm_y": 0.44
+      },
+      {
+        "number": 2,
+        "col": 27.4,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.5388,
+        "norm_y": 0.76
+      },
+      {
+        "number": 3,
+        "col": 13.1,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.2469,
+        "norm_y": 0.28
+      },
+      {
+        "number": 4,
+        "col": 36.1,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.7163,
+        "norm_y": 0.52
+      },
+      {
+        "number": 5,
+        "col": 43.8,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.8735,
+        "norm_y": 0.6
+      },
+      {
+        "number": 6,
+        "col": 47.5,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.949,
+        "norm_y": 0.4
+      },
+      {
+        "number": 7,
+        "col": 15.4,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.2939,
+        "norm_y": 0.8
+      },
+      {
+        "number": 8,
+        "col": 33.7,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.6673,
+        "norm_y": 0.08
+      },
+      {
+        "number": 9,
+        "col": 21.5,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.4184,
+        "norm_y": 0.28
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r17",
+    "name": "9-Ball Rack 17",
+    "rack_num": 17,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "I",
+      "col": 32.0,
+      "norm_x": 0.6327,
+      "norm_y": 0.32
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 40.8,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.8122,
+        "norm_y": 0.24
+      },
+      {
+        "number": 2,
+        "col": 32.0,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.6327,
+        "norm_y": 0.84
+      },
+      {
+        "number": 3,
+        "col": 8.1,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.1449,
+        "norm_y": 0.2
+      },
+      {
+        "number": 4,
+        "col": 8.5,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.1531,
+        "norm_y": 0.88
+      },
+      {
+        "number": 5,
+        "col": 14.6,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.2776,
+        "norm_y": 0.52
+      },
+      {
+        "number": 6,
+        "col": 4.4,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.0694,
+        "norm_y": 0.72
+      },
+      {
+        "number": 7,
+        "col": 19.2,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.3714,
+        "norm_y": 0.8
+      },
+      {
+        "number": 8,
+        "col": 40.3,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.802,
+        "norm_y": 0.6
+      },
+      {
+        "number": 9,
+        "col": 19.0,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.3673,
+        "norm_y": 0.64
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r18",
+    "name": "9-Ball Rack 18",
+    "rack_num": 18,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "S",
+      "col": 42.0,
+      "norm_x": 0.8367,
+      "norm_y": 0.72
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 36.0,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.7143,
+        "norm_y": 0.68
+      },
+      {
+        "number": 2,
+        "col": 9.2,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.1673,
+        "norm_y": 0.56
+      },
+      {
+        "number": 3,
+        "col": 38.0,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.7551,
+        "norm_y": 0.76
+      },
+      {
+        "number": 4,
+        "col": 36.7,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.7286,
+        "norm_y": 0.64
+      },
+      {
+        "number": 5,
+        "col": 34.4,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.6816,
+        "norm_y": 0.08
+      },
+      {
+        "number": 6,
+        "col": 29.9,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.5898,
+        "norm_y": 0.4
+      },
+      {
+        "number": 7,
+        "col": 6.8,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.1184,
+        "norm_y": 0.12
+      },
+      {
+        "number": 8,
+        "col": 46.8,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.9347,
+        "norm_y": 0.52
+      },
+      {
+        "number": 9,
+        "col": 43.7,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.8714,
+        "norm_y": 0.28
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "L",
+        "leave_col": 42,
+        "leave_norm_x": 0.8367,
+        "leave_norm_y": 0.44
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r19",
+    "name": "9-Ball Rack 19",
+    "rack_num": 19,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "O",
+      "col": 23.0,
+      "norm_x": 0.449,
+      "norm_y": 0.56
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 35.4,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.702,
+        "norm_y": 0.68
+      },
+      {
+        "number": 2,
+        "col": 24.1,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.4714,
+        "norm_y": 0.08
+      },
+      {
+        "number": 3,
+        "col": 42.0,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.8367,
+        "norm_y": 0.2
+      },
+      {
+        "number": 4,
+        "col": 33.8,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.6694,
+        "norm_y": 0.24
+      },
+      {
+        "number": 5,
+        "col": 37.7,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.749,
+        "norm_y": 0.2
+      },
+      {
+        "number": 6,
+        "col": 41.7,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.8306,
+        "norm_y": 0.44
+      },
+      {
+        "number": 7,
+        "col": 16.6,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.3184,
+        "norm_y": 0.84
+      },
+      {
+        "number": 8,
+        "col": 2.4,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.0286,
+        "norm_y": 0.52
+      },
+      {
+        "number": 9,
+        "col": 43.6,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.8694,
+        "norm_y": 0.64
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r20",
+    "name": "9-Ball Rack 20",
+    "rack_num": 20,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "S",
+      "col": 30.0,
+      "norm_x": 0.5918,
+      "norm_y": 0.72
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 37.1,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.7367,
+        "norm_y": 0.92
+      },
+      {
+        "number": 2,
+        "col": 38.0,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.7551,
+        "norm_y": 0.4
+      },
+      {
+        "number": 3,
+        "col": 44.6,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.8898,
+        "norm_y": 0.56
+      },
+      {
+        "number": 4,
+        "col": 2.5,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.0306,
+        "norm_y": 0.6
+      },
+      {
+        "number": 5,
+        "col": 32.8,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.649,
+        "norm_y": 0.24
+      },
+      {
+        "number": 6,
+        "col": 3.6,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.0531,
+        "norm_y": 0.72
+      },
+      {
+        "number": 7,
+        "col": 44.1,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.8796,
+        "norm_y": 0.44
+      },
+      {
+        "number": 8,
+        "col": 6.0,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.102,
+        "norm_y": 0.92
+      },
+      {
+        "number": 9,
+        "col": 25.9,
+        "row": "B",
+        "row_idx": 2,
+        "norm_x": 0.5082,
+        "norm_y": 0.04
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r21",
+    "name": "9-Ball Rack 21",
+    "rack_num": 21,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "W",
+      "col": 40.0,
+      "norm_x": 0.7959,
+      "norm_y": 0.88
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 41.2,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.8204,
+        "norm_y": 0.44
+      },
+      {
+        "number": 2,
+        "col": 6.6,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.1143,
+        "norm_y": 0.72
+      },
+      {
+        "number": 3,
+        "col": 13.9,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.2633,
+        "norm_y": 0.4
+      },
+      {
+        "number": 4,
+        "col": 8.4,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.151,
+        "norm_y": 0.6
+      },
+      {
+        "number": 5,
+        "col": 3.7,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.0551,
+        "norm_y": 0.76
+      },
+      {
+        "number": 6,
+        "col": 36.8,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.7306,
+        "norm_y": 0.52
+      },
+      {
+        "number": 7,
+        "col": 10.8,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.2,
+        "norm_y": 0.24
+      },
+      {
+        "number": 8,
+        "col": 20.8,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.4041,
+        "norm_y": 0.76
+      },
+      {
+        "number": 9,
+        "col": 22.1,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.4306,
+        "norm_y": 0.28
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r22",
+    "name": "9-Ball Rack 22",
+    "rack_num": 22,
+    "game": "9-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "R",
+      "col": 35.0,
+      "norm_x": 0.6939,
+      "norm_y": 0.68
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 27.5,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.5408,
+        "norm_y": 0.24
+      },
+      {
+        "number": 2,
+        "col": 22.4,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.4367,
+        "norm_y": 0.16
+      },
+      {
+        "number": 3,
+        "col": 28.7,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.5653,
+        "norm_y": 0.96
+      },
+      {
+        "number": 4,
+        "col": 5.7,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.0959,
+        "norm_y": 0.48
+      },
+      {
+        "number": 5,
+        "col": 34.8,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.6898,
+        "norm_y": 0.28
+      },
+      {
+        "number": 6,
+        "col": 8.1,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.1449,
+        "norm_y": 0.28
+      },
+      {
+        "number": 7,
+        "col": 24.0,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.4694,
+        "norm_y": 0.52
+      },
+      {
+        "number": 8,
+        "col": 40.5,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.8061,
+        "norm_y": 0.8
+      },
+      {
+        "number": 9,
+        "col": 45.5,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.9082,
+        "norm_y": 0.08
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r23",
+    "name": "9-Ball Rack 23",
+    "rack_num": 23,
+    "game": "9-Ball",
+    "difficulty": "BEGINNER",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "W",
+      "col": 34.0,
+      "norm_x": 0.6735,
+      "norm_y": 0.88
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 21.8,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.4245,
+        "norm_y": 0.96
+      },
+      {
+        "number": 2,
+        "col": 24.0,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.4694,
+        "norm_y": 0.4
+      },
+      {
+        "number": 3,
+        "col": 17.0,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.3265,
+        "norm_y": 0.28
+      },
+      {
+        "number": 4,
+        "col": 9.5,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.1735,
+        "norm_y": 0.56
+      },
+      {
+        "number": 5,
+        "col": 37.5,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.7449,
+        "norm_y": 0.24
+      },
+      {
+        "number": 6,
+        "col": 37.1,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.7367,
+        "norm_y": 0.52
+      },
+      {
+        "number": 7,
+        "col": 34.2,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.6776,
+        "norm_y": 0.4
+      },
+      {
+        "number": 8,
+        "col": 37.1,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.7367,
+        "norm_y": 0.2
+      },
+      {
+        "number": 9,
+        "col": 35.3,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.7,
+        "norm_y": 0.6
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r24",
+    "name": "9-Ball Rack 24",
+    "rack_num": 24,
+    "game": "9-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "L",
+      "col": 31.0,
+      "norm_x": 0.6122,
+      "norm_y": 0.44
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 38.0,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.7551,
+        "norm_y": 0.6
+      },
+      {
+        "number": 2,
+        "col": 29.1,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.5735,
+        "norm_y": 0.44
+      },
+      {
+        "number": 3,
+        "col": 32.6,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.6449,
+        "norm_y": 0.6
+      },
+      {
+        "number": 4,
+        "col": 2.5,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.0306,
+        "norm_y": 0.44
+      },
+      {
+        "number": 5,
+        "col": 35.7,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.7082,
+        "norm_y": 0.88
+      },
+      {
+        "number": 6,
+        "col": 5.0,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.0816,
+        "norm_y": 0.24
+      },
+      {
+        "number": 7,
+        "col": 4.6,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.0735,
+        "norm_y": 0.72
+      },
+      {
+        "number": 8,
+        "col": 22.8,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.4449,
+        "norm_y": 0.44
+      },
+      {
+        "number": 9,
+        "col": 12.7,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.2388,
+        "norm_y": 0.24
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "9ball_r25",
+    "name": "9-Ball Rack 25",
+    "rack_num": 25,
+    "game": "9-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 9, from ball in hand.",
+    "pass_mark": "Run all 9 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "N",
+      "col": 33.0,
+      "norm_x": 0.6531,
+      "norm_y": 0.52
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 44.4,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.8857,
+        "norm_y": 0.2
+      },
+      {
+        "number": 2,
+        "col": 47.7,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.9531,
+        "norm_y": 0.36
+      },
+      {
+        "number": 3,
+        "col": 24.7,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.4837,
+        "norm_y": 0.4
+      },
+      {
+        "number": 4,
+        "col": 27.1,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.5327,
+        "norm_y": 0.64
+      },
+      {
+        "number": 5,
+        "col": 14.7,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.2796,
+        "norm_y": 0.92
+      },
+      {
+        "number": 6,
+        "col": 14.1,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.2673,
+        "norm_y": 0.72
+      },
+      {
+        "number": 7,
+        "col": 19.2,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.3714,
+        "norm_y": 0.64
+      },
+      {
+        "number": 8,
+        "col": 18.9,
+        "row": "B",
+        "row_idx": 2,
+        "norm_x": 0.3653,
+        "norm_y": 0.04
+      },
+      {
+        "number": 9,
+        "col": 45.9,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.9163,
+        "norm_y": 0.44
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r1",
+    "name": "10-Ball Rack 1",
+    "rack_num": 1,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "L",
+      "col": 38.0,
+      "norm_x": 0.7551,
+      "norm_y": 0.44
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 40.8,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.8122,
+        "norm_y": 0.6
+      },
+      {
+        "number": 2,
+        "col": 5.8,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.098,
+        "norm_y": 0.56
+      },
+      {
+        "number": 3,
+        "col": 12.6,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.2367,
+        "norm_y": 0.6
+      },
+      {
+        "number": 4,
+        "col": 24.9,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.4878,
+        "norm_y": 0.84
+      },
+      {
+        "number": 5,
+        "col": 34.3,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.6796,
+        "norm_y": 0.48
+      },
+      {
+        "number": 6,
+        "col": 32.6,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.6449,
+        "norm_y": 0.64
+      },
+      {
+        "number": 7,
+        "col": 22.5,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.4388,
+        "norm_y": 0.76
+      },
+      {
+        "number": 8,
+        "col": 24.1,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.4714,
+        "norm_y": 0.28
+      },
+      {
+        "number": 9,
+        "col": 9.7,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.1776,
+        "norm_y": 0.92
+      },
+      {
+        "number": 10,
+        "col": 7.1,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.1245,
+        "norm_y": 0.12
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 8,
+        "leave_row": "M",
+        "leave_col": 15,
+        "leave_norm_x": 0.2857,
+        "leave_norm_y": 0.48
+      },
+      {
+        "ball": 10,
+        "pocket": "P1",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r2",
+    "name": "10-Ball Rack 2",
+    "rack_num": 2,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "U",
+      "col": 24.0,
+      "norm_x": 0.4694,
+      "norm_y": 0.8
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 40.9,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.8143,
+        "norm_y": 0.88
+      },
+      {
+        "number": 2,
+        "col": 48.4,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.9673,
+        "norm_y": 0.84
+      },
+      {
+        "number": 3,
+        "col": 8.2,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.1469,
+        "norm_y": 0.52
+      },
+      {
+        "number": 4,
+        "col": 40.0,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.7959,
+        "norm_y": 0.52
+      },
+      {
+        "number": 5,
+        "col": 45.0,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.898,
+        "norm_y": 0.68
+      },
+      {
+        "number": 6,
+        "col": 32.3,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.6388,
+        "norm_y": 0.56
+      },
+      {
+        "number": 7,
+        "col": 4.3,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.0673,
+        "norm_y": 0.2
+      },
+      {
+        "number": 8,
+        "col": 6.0,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.102,
+        "norm_y": 0.24
+      },
+      {
+        "number": 9,
+        "col": 5.7,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.0959,
+        "norm_y": 0.88
+      },
+      {
+        "number": 10,
+        "col": 10.8,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.2,
+        "norm_y": 0.28
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 8,
+        "leave_row": "P",
+        "leave_col": 16,
+        "leave_norm_x": 0.3061,
+        "leave_norm_y": 0.6
+      },
+      {
+        "ball": 10,
+        "pocket": "P1",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r3",
+    "name": "10-Ball Rack 3",
+    "rack_num": 3,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "E",
+      "col": 42.0,
+      "norm_x": 0.8367,
+      "norm_y": 0.16
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 35.6,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.7061,
+        "norm_y": 0.08
+      },
+      {
+        "number": 2,
+        "col": 5.7,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.0959,
+        "norm_y": 0.12
+      },
+      {
+        "number": 3,
+        "col": 31.7,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.6265,
+        "norm_y": 0.84
+      },
+      {
+        "number": 4,
+        "col": 3.3,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.0469,
+        "norm_y": 0.64
+      },
+      {
+        "number": 5,
+        "col": 32.3,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.6388,
+        "norm_y": 0.96
+      },
+      {
+        "number": 6,
+        "col": 12.1,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.2265,
+        "norm_y": 0.88
+      },
+      {
+        "number": 7,
+        "col": 12.0,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.2245,
+        "norm_y": 0.6
+      },
+      {
+        "number": 8,
+        "col": 11.7,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.2184,
+        "norm_y": 0.4
+      },
+      {
+        "number": 9,
+        "col": 48.1,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.9612,
+        "norm_y": 0.24
+      },
+      {
+        "number": 10,
+        "col": 26.8,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.5265,
+        "norm_y": 0.2
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 9,
+        "leave_row": "M",
+        "leave_col": 32,
+        "leave_norm_x": 0.6327,
+        "leave_norm_y": 0.48
+      },
+      {
+        "ball": 10,
+        "pocket": "P2",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r4",
+    "name": "10-Ball Rack 4",
+    "rack_num": 4,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "X",
+      "col": 28.0,
+      "norm_x": 0.551,
+      "norm_y": 0.92
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 36.2,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.7184,
+        "norm_y": 0.88
+      },
+      {
+        "number": 2,
+        "col": 37.7,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.749,
+        "norm_y": 0.32
+      },
+      {
+        "number": 3,
+        "col": 26.8,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.5265,
+        "norm_y": 0.76
+      },
+      {
+        "number": 4,
+        "col": 2.3,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.0265,
+        "norm_y": 0.28
+      },
+      {
+        "number": 5,
+        "col": 42.9,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.8551,
+        "norm_y": 0.2
+      },
+      {
+        "number": 6,
+        "col": 36.2,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.7184,
+        "norm_y": 0.6
+      },
+      {
+        "number": 7,
+        "col": 40.3,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.802,
+        "norm_y": 0.6
+      },
+      {
+        "number": 8,
+        "col": 41.6,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.8286,
+        "norm_y": 0.2
+      },
+      {
+        "number": 9,
+        "col": 16.9,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.3245,
+        "norm_y": 0.96
+      },
+      {
+        "number": 10,
+        "col": 45.4,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.9061,
+        "norm_y": 0.92
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 8,
+        "leave_row": "T",
+        "leave_col": 25,
+        "leave_norm_x": 0.4898,
+        "leave_norm_y": 0.76
+      },
+      {
+        "ball": 10,
+        "pocket": "P6",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r5",
+    "name": "10-Ball Rack 5",
+    "rack_num": 5,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "W",
+      "col": 12.0,
+      "norm_x": 0.2245,
+      "norm_y": 0.88
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 20.6,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.4,
+        "norm_y": 0.48
+      },
+      {
+        "number": 2,
+        "col": 39.8,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.7918,
+        "norm_y": 0.16
+      },
+      {
+        "number": 3,
+        "col": 33.2,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.6571,
+        "norm_y": 0.12
+      },
+      {
+        "number": 4,
+        "col": 16.6,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.3184,
+        "norm_y": 0.36
+      },
+      {
+        "number": 5,
+        "col": 24.9,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.4878,
+        "norm_y": 0.56
+      },
+      {
+        "number": 6,
+        "col": 8.3,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.149,
+        "norm_y": 0.08
+      },
+      {
+        "number": 7,
+        "col": 32.9,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.651,
+        "norm_y": 0.52
+      },
+      {
+        "number": 8,
+        "col": 26.7,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.5245,
+        "norm_y": 0.28
+      },
+      {
+        "number": 9,
+        "col": 48.3,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.9653,
+        "norm_y": 0.32
+      },
+      {
+        "number": 10,
+        "col": 5.4,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.0898,
+        "norm_y": 0.28
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 8,
+        "leave_row": "R",
+        "leave_col": 21,
+        "leave_norm_x": 0.4082,
+        "leave_norm_y": 0.68
+      },
+      {
+        "ball": 10,
+        "pocket": "P1",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r6",
+    "name": "10-Ball Rack 6",
+    "rack_num": 6,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "Y",
+      "col": 25.0,
+      "norm_x": 0.4898,
+      "norm_y": 0.96
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 33.4,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.6612,
+        "norm_y": 0.88
+      },
+      {
+        "number": 2,
+        "col": 31.0,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.6122,
+        "norm_y": 0.68
+      },
+      {
+        "number": 3,
+        "col": 9.9,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.1816,
+        "norm_y": 0.52
+      },
+      {
+        "number": 4,
+        "col": 4.2,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.0653,
+        "norm_y": 0.84
+      },
+      {
+        "number": 5,
+        "col": 43.4,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.8653,
+        "norm_y": 0.48
+      },
+      {
+        "number": 6,
+        "col": 11.9,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.2224,
+        "norm_y": 0.92
+      },
+      {
+        "number": 7,
+        "col": 17.3,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.3327,
+        "norm_y": 0.32
+      },
+      {
+        "number": 8,
+        "col": 45.8,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.9143,
+        "norm_y": 0.32
+      },
+      {
+        "number": 9,
+        "col": 20.4,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.3959,
+        "norm_y": 0.56
+      },
+      {
+        "number": 10,
+        "col": 21.9,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.4265,
+        "norm_y": 0.32
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 3,
+        "leave_row": "M",
+        "leave_col": 21,
+        "leave_norm_x": 0.4082,
+        "leave_norm_y": 0.48
+      },
+      {
+        "ball": 10,
+        "pocket": "P2",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r7",
+    "name": "10-Ball Rack 7",
+    "rack_num": 7,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "O",
+      "col": 15.0,
+      "norm_x": 0.2857,
+      "norm_y": 0.56
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 30.3,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.598,
+        "norm_y": 0.84
+      },
+      {
+        "number": 2,
+        "col": 30.4,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.6,
+        "norm_y": 0.68
+      },
+      {
+        "number": 3,
+        "col": 26.5,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.5204,
+        "norm_y": 0.6
+      },
+      {
+        "number": 4,
+        "col": 9.6,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.1755,
+        "norm_y": 0.28
+      },
+      {
+        "number": 5,
+        "col": 17.5,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.3367,
+        "norm_y": 0.72
+      },
+      {
+        "number": 6,
+        "col": 27.1,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.5327,
+        "norm_y": 0.72
+      },
+      {
+        "number": 7,
+        "col": 47.0,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.9388,
+        "norm_y": 0.44
+      },
+      {
+        "number": 8,
+        "col": 4.2,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.0653,
+        "norm_y": 0.72
+      },
+      {
+        "number": 9,
+        "col": 15.5,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.2959,
+        "norm_y": 0.8
+      },
+      {
+        "number": 10,
+        "col": 29.1,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.5735,
+        "norm_y": 0.24
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "R",
+        "leave_col": 16,
+        "leave_norm_x": 0.3061,
+        "leave_norm_y": 0.68
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 4,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r8",
+    "name": "10-Ball Rack 8",
+    "rack_num": 8,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "B",
+      "col": 48.0,
+      "norm_x": 0.9592,
+      "norm_y": 0.04
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 46.7,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.9327,
+        "norm_y": 0.6
+      },
+      {
+        "number": 2,
+        "col": 31.5,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.6224,
+        "norm_y": 0.88
+      },
+      {
+        "number": 3,
+        "col": 44.8,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.8939,
+        "norm_y": 0.52
+      },
+      {
+        "number": 4,
+        "col": 39.9,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.7939,
+        "norm_y": 0.4
+      },
+      {
+        "number": 5,
+        "col": 18.1,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.349,
+        "norm_y": 0.16
+      },
+      {
+        "number": 6,
+        "col": 10.7,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.198,
+        "norm_y": 0.56
+      },
+      {
+        "number": 7,
+        "col": 18.3,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.3531,
+        "norm_y": 0.92
+      },
+      {
+        "number": 8,
+        "col": 24.7,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.4837,
+        "norm_y": 0.92
+      },
+      {
+        "number": 9,
+        "col": 36.7,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.7286,
+        "norm_y": 0.68
+      },
+      {
+        "number": 10,
+        "col": 48.6,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.9714,
+        "norm_y": 0.44
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "W",
+        "leave_col": 41,
+        "leave_norm_x": 0.8163,
+        "leave_norm_y": 0.88
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r9",
+    "name": "10-Ball Rack 9",
+    "rack_num": 9,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "V",
+      "col": 17.0,
+      "norm_x": 0.3265,
+      "norm_y": 0.84
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 13.9,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.2633,
+        "norm_y": 0.56
+      },
+      {
+        "number": 2,
+        "col": 32.8,
+        "row": "B",
+        "row_idx": 2,
+        "norm_x": 0.649,
+        "norm_y": 0.04
+      },
+      {
+        "number": 3,
+        "col": 42.2,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.8408,
+        "norm_y": 0.8
+      },
+      {
+        "number": 4,
+        "col": 28.2,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.5551,
+        "norm_y": 0.44
+      },
+      {
+        "number": 5,
+        "col": 17.4,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.3347,
+        "norm_y": 0.68
+      },
+      {
+        "number": 6,
+        "col": 16.9,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.3245,
+        "norm_y": 0.4
+      },
+      {
+        "number": 7,
+        "col": 34.1,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.6755,
+        "norm_y": 0.16
+      },
+      {
+        "number": 8,
+        "col": 15.0,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.2857,
+        "norm_y": 0.2
+      },
+      {
+        "number": 9,
+        "col": 41.4,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.8245,
+        "norm_y": 0.24
+      },
+      {
+        "number": 10,
+        "col": 39.5,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.7857,
+        "norm_y": 0.08
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 8,
+        "leave_row": "D",
+        "leave_col": 35,
+        "leave_norm_x": 0.6939,
+        "leave_norm_y": 0.12
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r10",
+    "name": "10-Ball Rack 10",
+    "rack_num": 10,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "O",
+      "col": 8.0,
+      "norm_x": 0.1429,
+      "norm_y": 0.56
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 5.0,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.0816,
+        "norm_y": 0.16
+      },
+      {
+        "number": 2,
+        "col": 32.4,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.6408,
+        "norm_y": 0.44
+      },
+      {
+        "number": 3,
+        "col": 12.1,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.2265,
+        "norm_y": 0.64
+      },
+      {
+        "number": 4,
+        "col": 32.2,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.6367,
+        "norm_y": 0.76
+      },
+      {
+        "number": 5,
+        "col": 16.5,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.3163,
+        "norm_y": 0.28
+      },
+      {
+        "number": 6,
+        "col": 10.1,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.1857,
+        "norm_y": 0.68
+      },
+      {
+        "number": 7,
+        "col": 18.7,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.3612,
+        "norm_y": 0.36
+      },
+      {
+        "number": 8,
+        "col": 39.3,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.7816,
+        "norm_y": 0.28
+      },
+      {
+        "number": 9,
+        "col": 13.3,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.251,
+        "norm_y": 0.88
+      },
+      {
+        "number": 10,
+        "col": 38.4,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.7633,
+        "norm_y": 0.48
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 7,
+        "leave_row": "T",
+        "leave_col": 21,
+        "leave_norm_x": 0.4082,
+        "leave_norm_y": 0.76
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 4,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r11",
+    "name": "10-Ball Rack 11",
+    "rack_num": 11,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "W",
+      "col": 20.0,
+      "norm_x": 0.3878,
+      "norm_y": 0.88
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 12.4,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.2327,
+        "norm_y": 0.92
+      },
+      {
+        "number": 2,
+        "col": 45.5,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.9082,
+        "norm_y": 0.16
+      },
+      {
+        "number": 3,
+        "col": 38.4,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.7633,
+        "norm_y": 0.12
+      },
+      {
+        "number": 4,
+        "col": 42.3,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.8429,
+        "norm_y": 0.4
+      },
+      {
+        "number": 5,
+        "col": 31.6,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.6245,
+        "norm_y": 0.12
+      },
+      {
+        "number": 6,
+        "col": 12.4,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.2327,
+        "norm_y": 0.32
+      },
+      {
+        "number": 7,
+        "col": 24.0,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.4694,
+        "norm_y": 0.24
+      },
+      {
+        "number": 8,
+        "col": 17.1,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.3286,
+        "norm_y": 0.28
+      },
+      {
+        "number": 9,
+        "col": 8.7,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.1571,
+        "norm_y": 0.6
+      },
+      {
+        "number": 10,
+        "col": 20.5,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.398,
+        "norm_y": 0.56
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 7,
+        "leave_row": "E",
+        "leave_col": 11,
+        "leave_norm_x": 0.2041,
+        "leave_norm_y": 0.16
+      },
+      {
+        "ball": 10,
+        "pocket": "P5",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r12",
+    "name": "10-Ball Rack 12",
+    "rack_num": 12,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "I",
+      "col": 28.0,
+      "norm_x": 0.551,
+      "norm_y": 0.32
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 16.2,
+        "row": "B",
+        "row_idx": 2,
+        "norm_x": 0.3102,
+        "norm_y": 0.04
+      },
+      {
+        "number": 2,
+        "col": 40.7,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.8102,
+        "norm_y": 0.8
+      },
+      {
+        "number": 3,
+        "col": 47.6,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.951,
+        "norm_y": 0.12
+      },
+      {
+        "number": 4,
+        "col": 40.1,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.798,
+        "norm_y": 0.32
+      },
+      {
+        "number": 5,
+        "col": 45.0,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.898,
+        "norm_y": 0.24
+      },
+      {
+        "number": 6,
+        "col": 43.2,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.8612,
+        "norm_y": 0.12
+      },
+      {
+        "number": 7,
+        "col": 20.7,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.402,
+        "norm_y": 0.8
+      },
+      {
+        "number": 8,
+        "col": 5.5,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.0918,
+        "norm_y": 0.08
+      },
+      {
+        "number": 9,
+        "col": 32.7,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.6469,
+        "norm_y": 0.64
+      },
+      {
+        "number": 10,
+        "col": 41.9,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.8347,
+        "norm_y": 0.36
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 4,
+        "leave_row": "O",
+        "leave_col": 33,
+        "leave_norm_x": 0.6531,
+        "leave_norm_y": 0.56
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r13",
+    "name": "10-Ball Rack 13",
+    "rack_num": 13,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "E",
+      "col": 47.0,
+      "norm_x": 0.9388,
+      "norm_y": 0.16
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 46.0,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.9184,
+        "norm_y": 0.44
+      },
+      {
+        "number": 2,
+        "col": 20.9,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.4061,
+        "norm_y": 0.56
+      },
+      {
+        "number": 3,
+        "col": 43.6,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.8694,
+        "norm_y": 0.88
+      },
+      {
+        "number": 4,
+        "col": 7.7,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.1367,
+        "norm_y": 0.88
+      },
+      {
+        "number": 5,
+        "col": 27.8,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.5469,
+        "norm_y": 0.64
+      },
+      {
+        "number": 6,
+        "col": 7.4,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.1306,
+        "norm_y": 0.44
+      },
+      {
+        "number": 7,
+        "col": 38.3,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.7612,
+        "norm_y": 0.12
+      },
+      {
+        "number": 8,
+        "col": 39.6,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.7878,
+        "norm_y": 0.76
+      },
+      {
+        "number": 9,
+        "col": 19.4,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.3755,
+        "norm_y": 0.36
+      },
+      {
+        "number": 10,
+        "col": 13.5,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.2551,
+        "norm_y": 0.88
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 7,
+        "leave_row": "M",
+        "leave_col": 27,
+        "leave_norm_x": 0.5306,
+        "leave_norm_y": 0.48
+      },
+      {
+        "ball": 10,
+        "pocket": "P4",
+        "power": 4,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r14",
+    "name": "10-Ball Rack 14",
+    "rack_num": 14,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "R",
+      "col": 29.0,
+      "norm_x": 0.5714,
+      "norm_y": 0.68
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 21.9,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.4265,
+        "norm_y": 0.88
+      },
+      {
+        "number": 2,
+        "col": 19.1,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.3694,
+        "norm_y": 0.6
+      },
+      {
+        "number": 3,
+        "col": 13.1,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.2469,
+        "norm_y": 0.24
+      },
+      {
+        "number": 4,
+        "col": 30.1,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.5939,
+        "norm_y": 0.2
+      },
+      {
+        "number": 5,
+        "col": 31.1,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.6143,
+        "norm_y": 0.72
+      },
+      {
+        "number": 6,
+        "col": 20.0,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.3878,
+        "norm_y": 0.24
+      },
+      {
+        "number": 7,
+        "col": 28.3,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.5571,
+        "norm_y": 0.96
+      },
+      {
+        "number": 8,
+        "col": 17.4,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.3347,
+        "norm_y": 0.2
+      },
+      {
+        "number": 9,
+        "col": 30.6,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.6041,
+        "norm_y": 0.84
+      },
+      {
+        "number": 10,
+        "col": 34.6,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.6857,
+        "norm_y": 0.64
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 2,
+        "leave_row": "W",
+        "leave_col": 30,
+        "leave_norm_x": 0.5918,
+        "leave_norm_y": 0.88
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r15",
+    "name": "10-Ball Rack 15",
+    "rack_num": 15,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "W",
+      "col": 8.0,
+      "norm_x": 0.1429,
+      "norm_y": 0.88
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 5.2,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.0857,
+        "norm_y": 0.64
+      },
+      {
+        "number": 2,
+        "col": 10.0,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.1837,
+        "norm_y": 0.36
+      },
+      {
+        "number": 3,
+        "col": 8.2,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.1469,
+        "norm_y": 0.24
+      },
+      {
+        "number": 4,
+        "col": 14.7,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.2796,
+        "norm_y": 0.76
+      },
+      {
+        "number": 5,
+        "col": 48.9,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.9776,
+        "norm_y": 0.68
+      },
+      {
+        "number": 6,
+        "col": 21.6,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.4204,
+        "norm_y": 0.64
+      },
+      {
+        "number": 7,
+        "col": 6.7,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.1163,
+        "norm_y": 0.44
+      },
+      {
+        "number": 8,
+        "col": 18.3,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.3531,
+        "norm_y": 0.56
+      },
+      {
+        "number": 9,
+        "col": 35.9,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.7122,
+        "norm_y": 0.4
+      },
+      {
+        "number": 10,
+        "col": 38.3,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.7612,
+        "norm_y": 0.2
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "J",
+        "leave_col": 33,
+        "leave_norm_x": 0.6531,
+        "leave_norm_y": 0.36
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 4,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r16",
+    "name": "10-Ball Rack 16",
+    "rack_num": 16,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "Y",
+      "col": 45.0,
+      "norm_x": 0.898,
+      "norm_y": 0.96
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 44.4,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.8857,
+        "norm_y": 0.6
+      },
+      {
+        "number": 2,
+        "col": 31.8,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.6286,
+        "norm_y": 0.68
+      },
+      {
+        "number": 3,
+        "col": 17.5,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.3367,
+        "norm_y": 0.48
+      },
+      {
+        "number": 4,
+        "col": 23.9,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.4673,
+        "norm_y": 0.44
+      },
+      {
+        "number": 5,
+        "col": 8.1,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.1449,
+        "norm_y": 0.52
+      },
+      {
+        "number": 6,
+        "col": 29.2,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.5755,
+        "norm_y": 0.48
+      },
+      {
+        "number": 7,
+        "col": 34.6,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.6857,
+        "norm_y": 0.6
+      },
+      {
+        "number": 8,
+        "col": 11.3,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.2102,
+        "norm_y": 0.68
+      },
+      {
+        "number": 9,
+        "col": 21.9,
+        "row": "U",
+        "row_idx": 21,
+        "norm_x": 0.4265,
+        "norm_y": 0.8
+      },
+      {
+        "number": 10,
+        "col": 44.1,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.8796,
+        "norm_y": 0.32
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "R",
+        "leave_col": 30,
+        "leave_norm_x": 0.5918,
+        "leave_norm_y": 0.68
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r17",
+    "name": "10-Ball Rack 17",
+    "rack_num": 17,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "Q",
+      "col": 20.0,
+      "norm_x": 0.3878,
+      "norm_y": 0.64
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 32.2,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.6367,
+        "norm_y": 0.92
+      },
+      {
+        "number": 2,
+        "col": 23.1,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.451,
+        "norm_y": 0.08
+      },
+      {
+        "number": 3,
+        "col": 41.4,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.8245,
+        "norm_y": 0.84
+      },
+      {
+        "number": 4,
+        "col": 16.2,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.3102,
+        "norm_y": 0.24
+      },
+      {
+        "number": 5,
+        "col": 41.4,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.8245,
+        "norm_y": 0.48
+      },
+      {
+        "number": 6,
+        "col": 20.1,
+        "row": "G",
+        "row_idx": 7,
+        "norm_x": 0.3898,
+        "norm_y": 0.24
+      },
+      {
+        "number": 7,
+        "col": 24.0,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.4694,
+        "norm_y": 0.68
+      },
+      {
+        "number": 8,
+        "col": 28.6,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.5633,
+        "norm_y": 0.96
+      },
+      {
+        "number": 9,
+        "col": 13.5,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.2551,
+        "norm_y": 0.32
+      },
+      {
+        "number": 10,
+        "col": 44.1,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.8796,
+        "norm_y": 0.36
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 8,
+        "leave_row": "S",
+        "leave_col": 29,
+        "leave_norm_x": 0.5714,
+        "leave_norm_y": 0.72
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r18",
+    "name": "10-Ball Rack 18",
+    "rack_num": 18,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "W",
+      "col": 28.0,
+      "norm_x": 0.551,
+      "norm_y": 0.88
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 35.3,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.7,
+        "norm_y": 0.92
+      },
+      {
+        "number": 2,
+        "col": 1.9,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.0184,
+        "norm_y": 0.08
+      },
+      {
+        "number": 3,
+        "col": 23.1,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.451,
+        "norm_y": 0.92
+      },
+      {
+        "number": 4,
+        "col": 14.4,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.2735,
+        "norm_y": 0.52
+      },
+      {
+        "number": 5,
+        "col": 22.5,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.4388,
+        "norm_y": 0.56
+      },
+      {
+        "number": 6,
+        "col": 20.4,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.3959,
+        "norm_y": 0.4
+      },
+      {
+        "number": 7,
+        "col": 26.2,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.5143,
+        "norm_y": 0.4
+      },
+      {
+        "number": 8,
+        "col": 17.9,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.3449,
+        "norm_y": 0.56
+      },
+      {
+        "number": 9,
+        "col": 3.5,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.051,
+        "norm_y": 0.48
+      },
+      {
+        "number": 10,
+        "col": 5.6,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.0939,
+        "norm_y": 0.4
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 6,
+        "leave_row": "O",
+        "leave_col": 7,
+        "leave_norm_x": 0.1224,
+        "leave_norm_y": 0.56
+      },
+      {
+        "ball": 10,
+        "pocket": "P1",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r19",
+    "name": "10-Ball Rack 19",
+    "rack_num": 19,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "M",
+      "col": 24.0,
+      "norm_x": 0.4694,
+      "norm_y": 0.48
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 30.7,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.6061,
+        "norm_y": 0.72
+      },
+      {
+        "number": 2,
+        "col": 9.0,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.1633,
+        "norm_y": 0.88
+      },
+      {
+        "number": 3,
+        "col": 27.3,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.5367,
+        "norm_y": 0.96
+      },
+      {
+        "number": 4,
+        "col": 37.5,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.7449,
+        "norm_y": 0.08
+      },
+      {
+        "number": 5,
+        "col": 27.2,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.5347,
+        "norm_y": 0.4
+      },
+      {
+        "number": 6,
+        "col": 45.1,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.9,
+        "norm_y": 0.84
+      },
+      {
+        "number": 7,
+        "col": 42.6,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.849,
+        "norm_y": 0.44
+      },
+      {
+        "number": 8,
+        "col": 25.1,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.4918,
+        "norm_y": 0.2
+      },
+      {
+        "number": 9,
+        "col": 24.7,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.4837,
+        "norm_y": 0.4
+      },
+      {
+        "number": 10,
+        "col": 28.0,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.551,
+        "norm_y": 0.12
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P5",
+        "power": 4,
+        "leave_row": "J",
+        "leave_col": 30,
+        "leave_norm_x": 0.5918,
+        "leave_norm_y": 0.36
+      },
+      {
+        "ball": 10,
+        "pocket": "P2",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r20",
+    "name": "10-Ball Rack 20",
+    "rack_num": 20,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "K",
+      "col": 32.0,
+      "norm_x": 0.6327,
+      "norm_y": 0.4
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 37.2,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.7388,
+        "norm_y": 0.28
+      },
+      {
+        "number": 2,
+        "col": 8.0,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.1429,
+        "norm_y": 0.12
+      },
+      {
+        "number": 3,
+        "col": 47.7,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.9531,
+        "norm_y": 0.32
+      },
+      {
+        "number": 4,
+        "col": 41.0,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.8163,
+        "norm_y": 0.52
+      },
+      {
+        "number": 5,
+        "col": 41.2,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.8204,
+        "norm_y": 0.92
+      },
+      {
+        "number": 6,
+        "col": 14.4,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.2735,
+        "norm_y": 0.08
+      },
+      {
+        "number": 7,
+        "col": 43.0,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.8571,
+        "norm_y": 0.84
+      },
+      {
+        "number": 8,
+        "col": 33.2,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.6571,
+        "norm_y": 0.68
+      },
+      {
+        "number": 9,
+        "col": 12.2,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.2286,
+        "norm_y": 0.48
+      },
+      {
+        "number": 10,
+        "col": 48.1,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.9612,
+        "norm_y": 0.72
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 8,
+        "leave_row": "N",
+        "leave_col": 21,
+        "leave_norm_x": 0.4082,
+        "leave_norm_y": 0.52
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P3",
+        "power": 6,
+        "leave_row": "H",
+        "leave_col": 39,
+        "leave_norm_x": 0.7755,
+        "leave_norm_y": 0.28
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "S",
+        "leave_col": 35,
+        "leave_norm_x": 0.6939,
+        "leave_norm_y": 0.72
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 9,
+        "leave_row": "F",
+        "leave_col": 37,
+        "leave_norm_x": 0.7347,
+        "leave_norm_y": 0.2
+      },
+      {
+        "ball": 10,
+        "pocket": "P6",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r21",
+    "name": "10-Ball Rack 21",
+    "rack_num": 21,
+    "game": "10-Ball",
+    "difficulty": "INTERMEDIATE",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "I",
+      "col": 24.0,
+      "norm_x": 0.4694,
+      "norm_y": 0.32
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 24.4,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.4776,
+        "norm_y": 0.16
+      },
+      {
+        "number": 2,
+        "col": 8.4,
+        "row": "H",
+        "row_idx": 8,
+        "norm_x": 0.151,
+        "norm_y": 0.28
+      },
+      {
+        "number": 3,
+        "col": 42.9,
+        "row": "P",
+        "row_idx": 16,
+        "norm_x": 0.8551,
+        "norm_y": 0.6
+      },
+      {
+        "number": 4,
+        "col": 22.5,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.4388,
+        "norm_y": 0.44
+      },
+      {
+        "number": 5,
+        "col": 19.7,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.3816,
+        "norm_y": 0.44
+      },
+      {
+        "number": 6,
+        "col": 33.8,
+        "row": "B",
+        "row_idx": 2,
+        "norm_x": 0.6694,
+        "norm_y": 0.04
+      },
+      {
+        "number": 7,
+        "col": 28.7,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.5653,
+        "norm_y": 0.84
+      },
+      {
+        "number": 8,
+        "col": 25.7,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.5041,
+        "norm_y": 0.72
+      },
+      {
+        "number": 9,
+        "col": 40.7,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.8102,
+        "norm_y": 0.68
+      },
+      {
+        "number": 10,
+        "col": 31.1,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.6143,
+        "norm_y": 0.52
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 7,
+        "leave_row": "F",
+        "leave_col": 40,
+        "leave_norm_x": 0.7959,
+        "leave_norm_y": 0.2
+      },
+      {
+        "ball": 10,
+        "pocket": "P5",
+        "power": 4,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r22",
+    "name": "10-Ball Rack 22",
+    "rack_num": 22,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "F",
+      "col": 15.0,
+      "norm_x": 0.2857,
+      "norm_y": 0.2
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 17.6,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.3388,
+        "norm_y": 0.36
+      },
+      {
+        "number": 2,
+        "col": 15.2,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.2898,
+        "norm_y": 0.92
+      },
+      {
+        "number": 3,
+        "col": 8.1,
+        "row": "K",
+        "row_idx": 11,
+        "norm_x": 0.1449,
+        "norm_y": 0.4
+      },
+      {
+        "number": 4,
+        "col": 41.3,
+        "row": "C",
+        "row_idx": 3,
+        "norm_x": 0.8224,
+        "norm_y": 0.08
+      },
+      {
+        "number": 5,
+        "col": 44.8,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.8939,
+        "norm_y": 0.72
+      },
+      {
+        "number": 6,
+        "col": 4.1,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.0633,
+        "norm_y": 0.36
+      },
+      {
+        "number": 7,
+        "col": 48.4,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.9673,
+        "norm_y": 0.16
+      },
+      {
+        "number": 8,
+        "col": 13.8,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.2612,
+        "norm_y": 0.72
+      },
+      {
+        "number": 9,
+        "col": 9.7,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.1776,
+        "norm_y": 0.68
+      },
+      {
+        "number": 10,
+        "col": 36.5,
+        "row": "M",
+        "row_idx": 13,
+        "norm_x": 0.7245,
+        "norm_y": 0.48
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 7,
+        "leave_row": "S",
+        "leave_col": 21,
+        "leave_norm_x": 0.4082,
+        "leave_norm_y": 0.72
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 4,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r23",
+    "name": "10-Ball Rack 23",
+    "rack_num": 23,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "K",
+      "col": 18.0,
+      "norm_x": 0.3469,
+      "norm_y": 0.4
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 13.2,
+        "row": "F",
+        "row_idx": 6,
+        "norm_x": 0.249,
+        "norm_y": 0.2
+      },
+      {
+        "number": 2,
+        "col": 19.3,
+        "row": "O",
+        "row_idx": 15,
+        "norm_x": 0.3735,
+        "norm_y": 0.56
+      },
+      {
+        "number": 3,
+        "col": 20.3,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.3939,
+        "norm_y": 0.84
+      },
+      {
+        "number": 4,
+        "col": 6.7,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.1163,
+        "norm_y": 0.16
+      },
+      {
+        "number": 5,
+        "col": 10.8,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.2,
+        "norm_y": 0.92
+      },
+      {
+        "number": 6,
+        "col": 35.9,
+        "row": "J",
+        "row_idx": 10,
+        "norm_x": 0.7122,
+        "norm_y": 0.36
+      },
+      {
+        "number": 7,
+        "col": 14.5,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.2755,
+        "norm_y": 0.92
+      },
+      {
+        "number": 8,
+        "col": 34.5,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.6837,
+        "norm_y": 0.32
+      },
+      {
+        "number": 9,
+        "col": 3.6,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.0531,
+        "norm_y": 0.32
+      },
+      {
+        "number": 10,
+        "col": 41.1,
+        "row": "X",
+        "row_idx": 24,
+        "norm_x": 0.8184,
+        "norm_y": 0.92
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P1",
+        "power": 9,
+        "leave_row": "R",
+        "leave_col": 25,
+        "leave_norm_x": 0.4898,
+        "leave_norm_y": 0.68
+      },
+      {
+        "ball": 10,
+        "pocket": "P6",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r24",
+    "name": "10-Ball Rack 24",
+    "rack_num": 24,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "L",
+      "col": 44.0,
+      "norm_x": 0.8776,
+      "norm_y": 0.44
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 47.8,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.9551,
+        "norm_y": 0.16
+      },
+      {
+        "number": 2,
+        "col": 30.1,
+        "row": "I",
+        "row_idx": 9,
+        "norm_x": 0.5939,
+        "norm_y": 0.32
+      },
+      {
+        "number": 3,
+        "col": 27.5,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.5408,
+        "norm_y": 0.68
+      },
+      {
+        "number": 4,
+        "col": 25.3,
+        "row": "L",
+        "row_idx": 12,
+        "norm_x": 0.4959,
+        "norm_y": 0.44
+      },
+      {
+        "number": 5,
+        "col": 16.0,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.3061,
+        "norm_y": 0.88
+      },
+      {
+        "number": 6,
+        "col": 35.5,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.7041,
+        "norm_y": 0.12
+      },
+      {
+        "number": 7,
+        "col": 31.5,
+        "row": "V",
+        "row_idx": 22,
+        "norm_x": 0.6224,
+        "norm_y": 0.84
+      },
+      {
+        "number": 8,
+        "col": 17.1,
+        "row": "S",
+        "row_idx": 19,
+        "norm_x": 0.3286,
+        "norm_y": 0.72
+      },
+      {
+        "number": 9,
+        "col": 46.5,
+        "row": "R",
+        "row_idx": 18,
+        "norm_x": 0.9286,
+        "norm_y": 0.68
+      },
+      {
+        "number": 10,
+        "col": 40.5,
+        "row": "E",
+        "row_idx": 5,
+        "norm_x": 0.8061,
+        "norm_y": 0.16
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P5",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P2",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P3",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P4",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P6",
+        "power": 7,
+        "leave_row": "H",
+        "leave_col": 36,
+        "leave_norm_x": 0.7143,
+        "leave_norm_y": 0.28
+      },
+      {
+        "ball": 10,
+        "pocket": "P3",
+        "power": 3,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  },
+  {
+    "id": "10ball_r25",
+    "name": "10-Ball Rack 25",
+    "rack_num": 25,
+    "game": "10-Ball",
+    "difficulty": "ADVANCED",
+    "goal": "Run the rack in order, 1 through 10, from ball in hand.",
+    "pass_mark": "Run all 10 in order, 2 of 5 tries",
+    "ball_in_hand": {
+      "row": "B",
+      "col": 45.0,
+      "norm_x": 0.898,
+      "norm_y": 0.04
+    },
+    "balls": [
+      {
+        "number": 1,
+        "col": 46.5,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.9286,
+        "norm_y": 0.64
+      },
+      {
+        "number": 2,
+        "col": 39.1,
+        "row": "N",
+        "row_idx": 14,
+        "norm_x": 0.7776,
+        "norm_y": 0.52
+      },
+      {
+        "number": 3,
+        "col": 10.8,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.2,
+        "norm_y": 0.88
+      },
+      {
+        "number": 4,
+        "col": 39.6,
+        "row": "Y",
+        "row_idx": 25,
+        "norm_x": 0.7878,
+        "norm_y": 0.96
+      },
+      {
+        "number": 5,
+        "col": 45.0,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.898,
+        "norm_y": 0.88
+      },
+      {
+        "number": 6,
+        "col": 15.0,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.2857,
+        "norm_y": 0.76
+      },
+      {
+        "number": 7,
+        "col": 14.1,
+        "row": "W",
+        "row_idx": 23,
+        "norm_x": 0.2673,
+        "norm_y": 0.88
+      },
+      {
+        "number": 8,
+        "col": 19.4,
+        "row": "D",
+        "row_idx": 4,
+        "norm_x": 0.3755,
+        "norm_y": 0.12
+      },
+      {
+        "number": 9,
+        "col": 12.9,
+        "row": "T",
+        "row_idx": 20,
+        "norm_x": 0.2429,
+        "norm_y": 0.76
+      },
+      {
+        "number": 10,
+        "col": 26.1,
+        "row": "Q",
+        "row_idx": 17,
+        "norm_x": 0.5122,
+        "norm_y": 0.64
+      }
+    ],
+    "run": [
+      {
+        "ball": 1,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 2,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 3,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 4,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 5,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 6,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 7,
+        "pocket": "P6",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 8,
+        "pocket": "P1",
+        "power": 5,
+        "leave_row": "",
+        "leave_col": null
+      },
+      {
+        "ball": 9,
+        "pocket": "P4",
+        "power": 7,
+        "leave_row": "Y",
+        "leave_col": 24,
+        "leave_norm_x": 0.4694,
+        "leave_norm_y": 0.96
+      },
+      {
+        "ball": 10,
+        "pocket": "P2",
+        "power": 4,
+        "leave_row": "",
+        "leave_col": null
+      }
+    ]
+  }
+]
