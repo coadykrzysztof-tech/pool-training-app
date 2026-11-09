@@ -15,6 +15,7 @@ import {
 } from './physics/constants';
 import { calculateAimGeometry } from './physics/geometry';
 import { simulateShot, SimulationResult } from './physics/simulator';
+import { analyzeShotAndCoach } from './physics/coach';
 import { gridToMeters } from './utils/coordinates';
 import { soundFx } from './utils/audio';
 
@@ -26,6 +27,7 @@ import { DrillLibraryModal } from './components/DrillLibraryModal';
 import { PrintableLayoutModal } from './components/PrintableLayoutModal';
 import { PhysicsReportModal } from './components/PhysicsReportModal';
 import { PracticeTimer } from './components/PracticeTimer';
+import { CoachFeedback, CoachingAdvice } from './components/CoachFeedback';
 
 import drillsData from './data/drills.json';
 import {
@@ -33,13 +35,10 @@ import {
   ShieldCheck,
   Volume2,
   VolumeX,
-  PlusCircle,
-  Trash2,
   Sparkles,
   Bookmark,
-  Share2,
+  Lightbulb,
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
 
 export const App: React.FC = () => {
   // Table configuration (7ft, 8ft, 9ft)
@@ -82,6 +81,19 @@ export const App: React.FC = () => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const animFrameRef = useRef<number | null>(null);
   const lastTickTimeRef = useRef<number>(0);
+  const isPausedRef = useRef<boolean>(false);
+  const playbackSpeedRef = useRef<number>(0.5);
+
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
+
+  useEffect(() => {
+    playbackSpeedRef.current = playbackSpeed;
+  }, [playbackSpeed]);
+
+  // Coach Feedback state
+  const [coachingAdvice, setCoachingAdvice] = useState<CoachingAdvice | null>(null);
 
   // Modals state
   const [isDrillModalOpen, setIsDrillModalOpen] = useState<boolean>(false);
@@ -137,6 +149,7 @@ export const App: React.FC = () => {
     (drill: Drill) => {
       setActiveDrill(drill);
       setTargetBallId(1);
+      setCoachingAdvice(null);
 
       const R = config.ballRadiusM;
       const m = config.ballMassKg;
@@ -256,12 +269,23 @@ export const App: React.FC = () => {
     setBalls((prev) => prev.filter((b) => b.id !== ballId));
   };
 
+  // Request Coaching Analysis on Demand
+  const handleAskCoach = () => {
+    if (!cueBall || targetBallId === null) return;
+    const targetB = balls.find((b) => b.id === targetBallId) || null;
+    if (!targetB) return;
+    const simulated = simulateShot(balls, shot, config, targetBallId);
+    const advice = analyzeShotAndCoach(cueBall, targetB, shot, simulated, activeDrill, config, balls);
+    setCoachingAdvice(advice);
+  };
+
   // Execute Simulation
   const handleExecuteShot = () => {
     if (isSimulating || !cueBall || cueBall.isPocketed) return;
 
     // Snapshot before shot for reset
     setSavedSnapshotBalls(balls.map((b) => ({ ...b })));
+    setCoachingAdvice(null);
 
     soundFx.playBallHit(shot.speedMs / 5);
 
@@ -272,69 +296,92 @@ export const App: React.FC = () => {
     setIsPaused(false);
     lastTickTimeRef.current = performance.now();
 
+    const totalFrames = result.frames.length;
+    let frameIdx = 0;
+
     // Start 60 FPS animation loop
     const animate = (now: number) => {
+      if (isPausedRef.current) {
+        lastTickTimeRef.current = now;
+        animFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       const elapsed = (now - lastTickTimeRef.current) / 1000;
       lastTickTimeRef.current = now;
 
-      setCurrentFrameIndex((prevIndex) => {
-        if (!result.frames || result.frames.length === 0) return prevIndex;
+      // Advance frames scaled by playbackSpeed
+      const advance = Math.max(1, Math.round(playbackSpeedRef.current * elapsed * 60));
+      frameIdx += advance;
 
-        // Advance frames scaled by playbackSpeed
-        const advance = Math.max(1, Math.round(playbackSpeed * elapsed * 60));
-        const nextIndex = prevIndex + advance;
+      if (frameIdx >= totalFrames - 1) {
+        // Simulation complete - STOP ANIMATION LOOP IMMEDIATELY
+        frameIdx = totalFrames - 1;
+        setCurrentFrameIndex(frameIdx);
+        setIsSimulating(false);
+        animFrameRef.current = null; // Do NOT request another frame!
 
-        if (nextIndex >= result.frames.length - 1) {
-          // Simulation complete
-          setIsSimulating(false);
-          // Update live balls to resting end state
-          const lastFrame = result.frames[result.frames.length - 1];
+        // Update live balls to resting end state
+        const lastFrame = result.frames[totalFrames - 1];
+        setBalls((prevBalls) =>
+          prevBalls.map((pb) => {
+            const matched = lastFrame.balls.find((fb) => fb.id === pb.id);
+            return matched ? { ...pb, x: matched.x, y: matched.y, isPocketed: matched.isPocketed } : pb;
+          })
+        );
+
+        // Evaluation & Coaching logic
+        if (result.cueBallPocketed) {
+          soundFx.playPocketDrop();
+          // Grant Ball in Hand: return cue ball to playable surface so player is never stuck
           setBalls((prevBalls) =>
             prevBalls.map((pb) => {
-              const matched = lastFrame.balls.find((fb) => fb.id === pb.id);
-              return matched ? { ...pb, x: matched.x, y: matched.y, isPocketed: matched.isPocketed } : pb;
+              if (pb.id === 0) {
+                const bih = activeDrill?.ball_in_hand;
+                const pt = bih
+                  ? gridToMeters(bih.col, bih.row, config)
+                  : { x: config.lengthM * 0.25, y: config.widthM * 0.5 };
+                return {
+                  ...pb,
+                  x: pt.x,
+                  y: pt.y,
+                  vx: 0,
+                  vy: 0,
+                  isPocketed: false,
+                };
+              }
+              return pb;
             })
           );
+          showNotification('Scratch! Cue ball returned to table (Ball in Hand).');
 
-          // Evaluation feedback
-          if (result.cueBallPocketed) {
-            soundFx.playPocketDrop();
-            // Grant Ball in Hand: return cue ball to playable surface so player is never stuck
-            setBalls((prevBalls) =>
-              prevBalls.map((pb) => {
-                if (pb.id === 0) {
-                  const bih = activeDrill?.ball_in_hand;
-                  const pt = bih
-                    ? gridToMeters(bih.col, bih.row, config)
-                    : { x: config.lengthM * 0.25, y: config.widthM * 0.5 };
-                  return {
-                    ...pb,
-                    x: pt.x,
-                    y: pt.y,
-                    vx: 0,
-                    vy: 0,
-                    isPocketed: false,
-                  };
-                }
-                return pb;
-              })
-            );
-            showNotification('Scratch! Cue ball returned to table (Ball in Hand).');
-          } else if (result.objectBallPocketed) {
-            soundFx.playPocketDrop();
-            confetti({ particleCount: 60, spread: 50, origin: { y: 0.7 } });
-            showNotification(`Great shot! Object Ball ${result.targetBallId} pocketed.`);
-          } else if (result.separationAngleDeg) {
-            showNotification(
-              `Stun test: Separation angle was ${result.separationAngleDeg.toFixed(1)}° (Tangent line: 90.0°)`
-            );
+          // Trigger Coach advice for scratch
+          const targetB = balls.find((b) => b.id === targetBallId) || null;
+          const advice = analyzeShotAndCoach(cueBall, targetB, shot, result, activeDrill, config, balls);
+          setCoachingAdvice(advice);
+        } else if (result.objectBallPocketed) {
+          soundFx.playPocketDrop();
+          // Subtle notification only - NO confetti or excessive fanfare per user request!
+          showNotification(`Ball ${result.targetBallId} pocketed.`);
+
+          // Evaluate position leave
+          const targetB = balls.find((b) => b.id === targetBallId) || null;
+          const advice = analyzeShotAndCoach(cueBall, targetB, shot, result, activeDrill, config, balls);
+          if (advice && advice.shotOutcome === 'pocketed_bad_leave') {
+            setCoachingAdvice(advice);
           }
-          return result.frames.length - 1;
+        } else {
+          // Missed shot! Provide Coach guidance on aim, tip, and power
+          const targetB = balls.find((b) => b.id === targetBallId) || null;
+          const advice = analyzeShotAndCoach(cueBall, targetB, shot, result, activeDrill, config, balls);
+          setCoachingAdvice(advice);
+          showNotification('Shot missed. See Shot Coach analysis for guidance.');
         }
 
-        return nextIndex;
-      });
+        return; // Complete exit from animation loop
+      }
 
+      setCurrentFrameIndex(frameIdx);
       animFrameRef.current = requestAnimationFrame(animate);
     };
 
@@ -344,15 +391,24 @@ export const App: React.FC = () => {
   // Cancel animation on unmount or reset
   useEffect(() => {
     return () => {
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      if (animFrameRef.current) {
+        cancelAnimationFrame(animFrameRef.current);
+        animFrameRef.current = null;
+      }
     };
   }, []);
 
   // Reset shot
   const handleResetShot = () => {
-    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    if (animFrameRef.current) {
+      cancelAnimationFrame(animFrameRef.current);
+      animFrameRef.current = null;
+    }
     setIsSimulating(false);
+    setIsPaused(false);
     setSimResult(null);
+    setCurrentFrameIndex(0);
+    setCoachingAdvice(null);
     if (savedSnapshotBalls.length > 0) {
       setBalls(savedSnapshotBalls.map((b) => ({ ...b, isPocketed: b.id === 0 ? false : b.isPocketed })));
       soundFx.playCushionHit();
@@ -410,7 +466,7 @@ export const App: React.FC = () => {
             <h1 className="text-sm font-bold tracking-tight text-slate-100 flex items-center gap-2">
               CueCraft Pro
               <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-sky-950 text-sky-400 border border-sky-800/80">
-                Stage 1 Validated
+                Coach Assisted
               </span>
             </h1>
             <p className="text-[10px] text-slate-400">Tangent Line & Position Trainer</p>
@@ -459,6 +515,16 @@ export const App: React.FC = () => {
             <span className="hidden sm:inline">Drills (50)</span>
           </button>
 
+          {/* Ask Coach Button */}
+          <button
+            onClick={handleAskCoach}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-950/60 hover:bg-amber-900/60 text-amber-300 border border-amber-800/80 text-xs font-semibold transition"
+            title="Get coach advice on current line and tip spin"
+          >
+            <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
+            <span className="hidden md:inline">Coach Advice</span>
+          </button>
+
           {/* Printable Layout Trigger */}
           {activeDrill && (
             <button
@@ -480,7 +546,7 @@ export const App: React.FC = () => {
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-800/80 text-xs font-semibold transition"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span className="hidden md:inline">Physics Verified</span>
+            <span className="hidden md:inline">Physics</span>
           </button>
 
           {/* Mute Button */}
@@ -539,6 +605,25 @@ export const App: React.FC = () => {
                   Recommended: {activeDrill.run[0].ball} → {activeDrill.run[0].pocket} (Pwr {activeDrill.run[0].power})
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Coach Advice Floating Card */}
+          {coachingAdvice && (
+            <div className="absolute top-12 left-1/2 -translate-x-1/2 z-20 max-w-md w-full px-4 drop-shadow-2xl">
+              <CoachFeedback
+                advice={coachingAdvice}
+                onApplyRecommended={(recShot) => {
+                  setShot(recShot);
+                  setCoachingAdvice(null);
+                  showNotification('Applied recommended aim angle, tip spin, and power!');
+                }}
+                onDismiss={() => setCoachingAdvice(null)}
+                onRetry={() => {
+                  handleResetShot();
+                  setCoachingAdvice(null);
+                }}
+              />
             </div>
           )}
 
