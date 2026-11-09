@@ -5,12 +5,18 @@ interface CueBallDiagramProps {
   shot: ShotSettings;
   onShotChange: (updated: Partial<ShotSettings>) => void;
   squirtFactor: number;
+  targetDistance?: number; // distance in meters to target ball
+  targetBallNum?: number | null;
+  spinStateAtImpact?: 'pure_stun' | 'sliding_draw' | 'sliding_follow' | 'natural_roll';
 }
 
 export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
   shot,
   onShotChange,
   squirtFactor,
+  targetDistance,
+  targetBallNum,
+  spinStateAtImpact,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -26,21 +32,37 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
   // Squirt deflection angle in degrees
   const squirtDeg = ((-squirtFactor * (shot.tipOffsetX || 0) * 180) / Math.PI).toFixed(1);
 
+  // Calibrated Stop Shot calculation for target distance
+  const distM = targetDistance && targetDistance > 0 ? targetDistance : 0.8;
+  const distFt = (distM * 3.28084).toFixed(1);
+  const v0 = Math.max(1.0, shot.speedMs || 2.0);
+  const mu_s = 0.20;
+  const g = 9.81;
+  const calcStopAy = Math.min(0.55, Math.max(0.04, (mu_s * g * distM) / (v0 * v0)));
+  const stopTipY = -Math.round(calcStopAy * 100) / 100;
+
+  const isCurrentStopShot =
+    Math.abs(shot.tipOffsetX) < 0.08 && Math.abs(shot.tipOffsetY - stopTipY) < 0.08;
+
   // Label text for vertical spin
-  const verticalText =
-    Math.abs(shot.tipOffsetY) < 0.08
-      ? 'Center Ball (Stun)'
-      : shot.tipOffsetY > 0
-      ? `+${(shot.tipOffsetY).toFixed(2)}R High (Follow)`
-      : `${(shot.tipOffsetY).toFixed(2)}R Low (Draw)`;
+  let verticalText = '';
+  if (isCurrentStopShot) {
+    verticalText = `🎯 Stop Shot (${stopTipY}R · Zero Spin at Impact)`;
+  } else if (Math.abs(shot.tipOffsetY) < 0.08) {
+    verticalText = 'Center Ball (Stun at Close Range)';
+  } else if (shot.tipOffsetY > 0) {
+    verticalText = `+${shot.tipOffsetY.toFixed(2)}R High (Follow)`;
+  } else {
+    verticalText = `${shot.tipOffsetY.toFixed(2)}R Low (Draw)`;
+  }
 
   // Label text for horizontal spin
   const horizontalText =
     Math.abs(shot.tipOffsetX) < 0.08
-      ? 'No Sidespin'
+      ? 'No Sidespin (Pure Line)'
       : shot.tipOffsetX > 0
-      ? `+${(shot.tipOffsetX).toFixed(2)}R Right English`
-      : `${(shot.tipOffsetX).toFixed(2)}R Left English`;
+      ? `+${shot.tipOffsetX.toFixed(2)}R Right English`
+      : `${shot.tipOffsetX.toFixed(2)}R Left English`;
 
   const handlePointerInteraction = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
@@ -48,11 +70,11 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
       if (!svg) return;
 
       const rect = svg.getBoundingClientRect();
-      const clickX = e.clientX - rect.left - (rect.width / 2);
-      const clickY = e.clientY - rect.top - (rect.height / 2);
+      const clickX = e.clientX - rect.left - rect.width / 2;
+      const clickY = e.clientY - rect.top - rect.height / 2;
 
       // Convert from screen px to normalized fraction of radius [-1, 1]
-      const scaleFactor = (svgRadius * (rect.width / 130));
+      const scaleFactor = svgRadius * (rect.width / 130);
       let normX = clickX / scaleFactor;
       let normY = -clickY / scaleFactor; // invert Y so up is positive
 
@@ -86,7 +108,32 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
         </button>
       </div>
 
-      <div className="relative my-2 cursor-pointer touch-none">
+      {/* Dedicated Stop Shot Calibrated Action Card */}
+      <div className="w-full my-1.5 bg-gradient-to-r from-cyan-950/70 via-slate-900 to-sky-950/70 border border-cyan-500/40 rounded-xl p-2 flex items-center justify-between shadow-sm">
+        <div className="flex flex-col">
+          <span className="text-[11px] font-bold text-cyan-300 flex items-center gap-1.5">
+            <span>🎯</span> Stop Shot Calibrator
+          </span>
+          <span className="text-[10px] text-slate-400">
+            {targetDistance
+              ? `${distFt} ft to Ball ${targetBallNum || ''} (Needs ${stopTipY}R Draw)`
+              : `Calibrated for zero-spin slide at impact`}
+          </span>
+        </div>
+        <button
+          onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: stopTipY })}
+          className={`px-3 py-1 rounded-lg font-bold text-xs transition active:scale-95 shadow ${
+            isCurrentStopShot
+              ? 'bg-cyan-500 text-slate-950 shadow-cyan-500/20'
+              : 'bg-cyan-600 hover:bg-cyan-500 text-white shadow-cyan-600/30'
+          }`}
+          title="Apply calibrated tip offset for dead stop on target ball"
+        >
+          {isCurrentStopShot ? 'Stop Active ✓' : 'Set Stop Shot'}
+        </button>
+      </div>
+
+      <div className="relative my-1 cursor-pointer touch-none">
         <svg
           ref={svgRef}
           width="130"
@@ -149,12 +196,24 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
             strokeDasharray="2 2"
           />
 
+          {/* Calibrated Stop Shot Marker (guideline ring where stop shot sits) */}
+          <circle
+            cx={center}
+            cy={center - stopTipY * svgRadius}
+            r="4"
+            fill="none"
+            stroke="#06b6d4"
+            strokeWidth="1.5"
+            strokeDasharray="2 2"
+            opacity="0.75"
+          />
+
           {/* Tip Contact Indicator (Blue Chalk Dot) */}
           <circle
             cx={tipX}
             cy={tipY}
             r="7"
-            fill="#0284c7"
+            fill={isCurrentStopShot ? '#06b6d4' : '#0284c7'}
             stroke="#ffffff"
             strokeWidth="2"
             className="filter drop-shadow"
@@ -166,7 +225,11 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
 
       {/* Tip Offsets Readout */}
       <div className="w-full bg-slate-950/80 rounded-lg p-2 text-center border border-slate-800/80 space-y-0.5 mb-2">
-        <div className="text-[11px] font-bold text-sky-300 font-mono">
+        <div
+          className={`text-[11px] font-bold font-mono ${
+            isCurrentStopShot ? 'text-cyan-300' : 'text-sky-300'
+          }`}
+        >
           {verticalText}
         </div>
         <div className="text-[10px] font-medium text-slate-400 font-mono">
@@ -182,34 +245,45 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
       {/* Quick Spin Presets */}
       <div className="grid grid-cols-3 gap-1.5 w-full">
         <button
+          onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: stopTipY })}
+          className={`px-1.5 py-1 text-[11px] font-semibold rounded border transition ${
+            isCurrentStopShot
+              ? 'bg-cyan-600 text-white border-cyan-400 shadow'
+              : 'bg-slate-800/80 text-cyan-300 border-cyan-900/60 hover:bg-slate-750'
+          }`}
+          title="Stop Shot: Calibrated for zero rotational spin at impact"
+        >
+          🎯 Stop Shot
+        </button>
+        <button
+          onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: 0 })}
+          className={`px-1.5 py-1 text-[11px] font-semibold rounded border transition ${
+            Math.abs(shot.tipOffsetY) < 0.1 && Math.abs(shot.tipOffsetX) < 0.1 && !isCurrentStopShot
+              ? 'bg-sky-600 text-white border-sky-400'
+              : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-750'
+          }`}
+        >
+          Center Ball
+        </button>
+        <button
           onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: 0.45 })}
           className={`px-1.5 py-1 text-[11px] font-semibold rounded border transition ${
             shot.tipOffsetY > 0.2 && Math.abs(shot.tipOffsetX) < 0.1
-              ? 'bg-sky-600 text-white border-sky-400'
+              ? 'bg-emerald-600 text-white border-emerald-400'
               : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-750'
           }`}
         >
           Follow (+0.45R)
         </button>
         <button
-          onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: 0 })}
-          className={`px-1.5 py-1 text-[11px] font-semibold rounded border transition ${
-            Math.abs(shot.tipOffsetY) < 0.1 && Math.abs(shot.tipOffsetX) < 0.1
-              ? 'bg-cyan-600 text-white border-cyan-400'
-              : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-750'
-          }`}
-        >
-          Stun (Center)
-        </button>
-        <button
           onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: -0.45 })}
           className={`px-1.5 py-1 text-[11px] font-semibold rounded border transition ${
-            shot.tipOffsetY < -0.2 && Math.abs(shot.tipOffsetX) < 0.1
+            shot.tipOffsetY < -0.2 && Math.abs(shot.tipOffsetX) < 0.1 && !isCurrentStopShot
               ? 'bg-amber-600 text-white border-amber-400'
               : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-750'
           }`}
         >
-          Draw (-0.45R)
+          Deep Draw (-0.45R)
         </button>
         <button
           onClick={() => onShotChange({ tipOffsetX: -0.35, tipOffsetY: 0 })}
@@ -230,17 +304,6 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
           }`}
         >
           Right English
-        </button>
-        <button
-          onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: -0.15 })}
-          className={`px-1.5 py-1 text-[11px] font-semibold rounded border transition ${
-            shot.tipOffsetY >= -0.25 && shot.tipOffsetY <= -0.1
-              ? 'bg-emerald-600 text-white border-emerald-400'
-              : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-750'
-          }`}
-          title="Stun-draw: slides to stun at medium distance"
-        >
-          Stun-Draw
         </button>
       </div>
 

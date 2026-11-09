@@ -27,6 +27,8 @@ interface TableCanvasProps {
   onRemoveBall: (ballId: number) => void;
   targetBallId: number | null;
   onSelectTargetBall: (ballId: number | null) => void;
+  activeTargetPocketId?: string | null;
+  onSelectPocket?: (pocketId: string) => void;
 }
 
 export const TableCanvas: React.FC<TableCanvasProps> = ({
@@ -41,6 +43,8 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
   onBallMove,
   targetBallId,
   onSelectTargetBall,
+  activeTargetPocketId,
+  onSelectPocket,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -304,25 +308,43 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       const sx = toScreenX(p.x);
       const sy = toScreenY(p.y);
       const sr = p.radius * scale;
+      const isTarget = activeTargetPocketId === p.id;
+
+      if (isTarget) {
+        // Glowing target ring
+        ctx.beginPath();
+        ctx.arc(sx, sy, sr + 6, 0, Math.PI * 2);
+        ctx.strokeStyle = '#06b6d4';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(sx, sy, sr + 12, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(6, 182, 212, 0.4)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
 
       // Dark pocket well
       ctx.beginPath();
       ctx.arc(sx, sy, sr, 0, Math.PI * 2);
-      ctx.fillStyle = '#080a0f';
+      ctx.fillStyle = isTarget ? '#041c2c' : '#080a0f';
       ctx.fill();
 
       // Pocket casting rim
-      ctx.strokeStyle = '#272a38';
-      ctx.lineWidth = 3;
+      ctx.strokeStyle = isTarget ? '#06b6d4' : '#272a38';
+      ctx.lineWidth = isTarget ? 4 : 3;
       ctx.stroke();
 
       // Pocket ID label (P1..P6)
-      ctx.fillStyle = '#64748b';
-      ctx.font = '700 10px "JetBrains Mono", monospace';
+      ctx.fillStyle = isTarget ? '#22d3ee' : '#64748b';
+      ctx.font = isTarget ? '700 12px "JetBrains Mono", monospace' : '700 10px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      const labelOffset = p.isCorner ? (p.y === 0 ? -12 : 12) : p.y === 0 ? -10 : 10;
-      ctx.fillText(p.id, sx, sy + labelOffset);
+      const labelOffset = p.isCorner ? (p.y === 0 ? -14 : 14) : p.y === 0 ? -12 : 12;
+      ctx.fillText(isTarget ? `🎯 ${p.id}` : p.id, sx, sy + labelOffset);
     });
 
     ctx.restore();
@@ -649,6 +671,17 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     const xm = toMetersX(mouseX);
     const ym = toMetersY(mouseY);
     const ballR = config.ballRadiusM;
+
+    // Check if clicked directly on a pocket
+    const pockets = getTablePockets(config);
+    const clickedPocket = pockets.find(
+      (p) => Math.hypot(p.x - xm, p.y - ym) <= p.radius * 1.5
+    );
+    if (clickedPocket && onSelectPocket) {
+      onSelectPocket(clickedPocket.id);
+      soundFx.playCushionHit();
+      return;
+    }
 
     // Check if clicked directly on a ball
     const clickedBall = balls.find(

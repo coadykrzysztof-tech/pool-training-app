@@ -92,6 +92,8 @@ export function calculateAimGeometry(
       spinStateAtImpact: 'natural_roll',
       cueCurveDirection: 'forward',
       predictedRestPos: null,
+      aimedPocketId: null,
+      aimedPocketAngleErrDeg: null,
     };
   }
 
@@ -187,6 +189,32 @@ export function calculateAimGeometry(
     };
   }
 
+  // Determine which pocket the object ball is actually aimed towards
+  const pockets = getTablePockets(config);
+  let aimedPocketId: string | null = null;
+  let aimedPocketAngleErrDeg: number | null = null;
+  let minAngleErr = Infinity;
+
+  pockets.forEach((p) => {
+    const toPocketX = p.x - targetBall.x;
+    const toPocketY = p.y - targetBall.y;
+    const pDist = Math.hypot(toPocketX, toPocketY);
+    if (pDist > 0.05) {
+      const pNormX = toPocketX / pDist;
+      const pNormY = toPocketY / pDist;
+      const dotPocket = lineOfCenters.x * pNormX + lineOfCenters.y * pNormY;
+      if (dotPocket > 0) {
+        const angleErrRad = Math.acos(Math.max(-1, Math.min(1, dotPocket)));
+        const angleErrDeg = (angleErrRad * 180) / Math.PI;
+        if (angleErrDeg < minAngleErr) {
+          minAngleErr = angleErrDeg;
+          aimedPocketId = p.id;
+          aimedPocketAngleErrDeg = angleErrDeg;
+        }
+      }
+    }
+  });
+
   return {
     hitTarget: true,
     targetBallId: targetBall.id,
@@ -203,5 +231,7 @@ export function calculateAimGeometry(
     spinStateAtImpact,
     cueCurveDirection,
     predictedRestPos,
+    aimedPocketId,
+    aimedPocketAngleErrDeg,
   };
 }

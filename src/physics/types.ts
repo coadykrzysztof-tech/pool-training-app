@@ -63,6 +63,8 @@ export interface GhostBallInfo {
   spinStateAtImpact: 'pure_stun' | 'sliding_draw' | 'sliding_follow' | 'natural_roll';
   cueCurveDirection: 'tangent' | 'forward' | 'backward';
   predictedRestPos: Vector2D | null;
+  aimedPocketId: string | null;          // Dynamically detected pocket in line of cut
+  aimedPocketAngleErrDeg: number | null; // Degree deviation between cut line and pocket center
 }
 
 export interface PocketDef {

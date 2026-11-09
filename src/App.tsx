@@ -52,6 +52,7 @@ export const App: React.FC = () => {
   // Active drill (if loaded)
   const [activeDrill, setActiveDrill] = useState<Drill | null>(null);
   const [targetBallId, setTargetBallId] = useState<number | null>(1);
+  const [selectedPocketId, setSelectedPocketId] = useState<string | null>(null);
 
   // Shot settings
   const [shot, setShot] = useState<ShotSettings>({
@@ -104,7 +105,7 @@ export const App: React.FC = () => {
 
   // Status notification pill
   const [notification, setNotification] = useState<string | null>(
-    'Welcome! Drag cue stick to aim, or click Drill Library to load a Pattern Puzzle.'
+    'Welcome! Aim at any pocket — CueCraft adjusts dynamically with you.'
   );
 
   // Load Rack 1 on initial mount
@@ -135,6 +136,8 @@ export const App: React.FC = () => {
         spinStateAtImpact: 'natural_roll',
         cueCurveDirection: 'forward',
         predictedRestPos: null,
+        aimedPocketId: null,
+        aimedPocketAngleErrDeg: null,
       };
 
   // Synchronize targetBallId with aimInfo if aim locks onto a ball
@@ -144,11 +147,20 @@ export const App: React.FC = () => {
     }
   }, [aimInfo.hitTarget, aimInfo.targetBallId]);
 
+  // Drill author's step for the active target ball
+  const activeRunStep = activeDrill?.run?.find((s) => s.ball === targetBallId) || null;
+  const bookPocketId = activeRunStep?.pocket || null;
+
+  // Dynamically determine effective target pocket:
+  // Priority: 1. User manual selection -> 2. Raycast cut aim direction -> 3. Drill book default -> 4. 'P5'
+  const effectivePocketId = selectedPocketId || aimInfo.aimedPocketId || bookPocketId || 'P5';
+
   // Load a drill into playable table layout
   const loadDrill = useCallback(
     (drill: Drill) => {
       setActiveDrill(drill);
       setTargetBallId(1);
+      setSelectedPocketId(null);
       setCoachingAdvice(null);
 
       const R = config.ballRadiusM;
@@ -275,7 +287,16 @@ export const App: React.FC = () => {
     const targetB = balls.find((b) => b.id === targetBallId) || null;
     if (!targetB) return;
     const simulated = simulateShot(balls, shot, config, targetBallId);
-    const advice = analyzeShotAndCoach(cueBall, targetB, shot, simulated, activeDrill, config, balls);
+    const advice = analyzeShotAndCoach(
+      cueBall,
+      targetB,
+      shot,
+      simulated,
+      activeDrill,
+      config,
+      balls,
+      effectivePocketId
+    );
     setCoachingAdvice(advice);
   };
 
@@ -357,25 +378,72 @@ export const App: React.FC = () => {
 
           // Trigger Coach advice for scratch
           const targetB = balls.find((b) => b.id === targetBallId) || null;
-          const advice = analyzeShotAndCoach(cueBall, targetB, shot, result, activeDrill, config, balls);
+          const advice = analyzeShotAndCoach(
+            cueBall,
+            targetB,
+            shot,
+            result,
+            activeDrill,
+            config,
+            balls,
+            effectivePocketId
+          );
           setCoachingAdvice(advice);
         } else if (result.objectBallPocketed) {
           soundFx.playPocketDrop();
-          // Subtle notification only - NO confetti or excessive fanfare per user request!
-          showNotification(`Ball ${result.targetBallId} pocketed.`);
+          showNotification(`Ball ${result.targetBallId} pocketed in ${effectivePocketId}!`);
 
           // Evaluate position leave
           const targetB = balls.find((b) => b.id === targetBallId) || null;
-          const advice = analyzeShotAndCoach(cueBall, targetB, shot, result, activeDrill, config, balls);
+          const advice = analyzeShotAndCoach(
+            cueBall,
+            targetB,
+            shot,
+            result,
+            activeDrill,
+            config,
+            balls,
+            effectivePocketId
+          );
           if (advice && advice.shotOutcome === 'pocketed_bad_leave') {
             setCoachingAdvice(advice);
+          }
+
+          // Advance to the NEXT ball on the table automatically
+          const remaining = balls
+            .filter((b) => b.id > 0 && !b.isPocketed && b.id !== result.targetBallId)
+            .sort((a, b) => a.id - b.id);
+
+          if (remaining.length > 0) {
+            const nextBall = remaining[0];
+            setTargetBallId(nextBall.id);
+            setSelectedPocketId(null); // allow auto-detection for next shot
+
+            // Aim cue stick toward the next ball from cue ball's new position
+            const finalCue = result.finalCuePos;
+            const nextAngle = Math.atan2(nextBall.y - finalCue.y, nextBall.x - finalCue.x);
+            setShot((prev) => ({
+              ...prev,
+              angleRad: nextAngle,
+              tipOffsetX: 0,
+              tipOffsetY: 0,
+            }));
           }
         } else {
           // Missed shot! Provide Coach guidance on aim, tip, and power
           const targetB = balls.find((b) => b.id === targetBallId) || null;
-          const advice = analyzeShotAndCoach(cueBall, targetB, shot, result, activeDrill, config, balls);
+          const advice = analyzeShotAndCoach(
+            cueBall,
+            targetB,
+            shot,
+            result,
+            activeDrill,
+            config,
+            balls,
+            effectivePocketId
+          );
           setCoachingAdvice(advice);
-          showNotification('Shot missed. See Shot Coach analysis for guidance.');
+          showNotification(`Shot missed ${effectivePocketId}. See Shot Coach analysis.`);
         }
 
         return; // Complete exit from animation loop
@@ -466,7 +534,7 @@ export const App: React.FC = () => {
             <h1 className="text-sm font-bold tracking-tight text-slate-100 flex items-center gap-2">
               CueCraft Pro
               <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-sky-950 text-sky-400 border border-sky-800/80">
-                Coach Assisted
+                Dynamic Aim
               </span>
             </h1>
             <p className="text-[10px] text-slate-400">Tangent Line & Position Trainer</p>
@@ -519,7 +587,7 @@ export const App: React.FC = () => {
           <button
             onClick={handleAskCoach}
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-950/60 hover:bg-amber-900/60 text-amber-300 border border-amber-800/80 text-xs font-semibold transition"
-            title="Get coach advice on current line and tip spin"
+            title={`Get coach advice for Ball ${targetBallId} into ${effectivePocketId}`}
           >
             <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
             <span className="hidden md:inline">Coach Advice</span>
@@ -580,6 +648,9 @@ export const App: React.FC = () => {
             shot={shot}
             onShotChange={(updated) => setShot((prev) => ({ ...prev, ...updated }))}
             squirtFactor={config.squirtFactor}
+            targetDistance={aimInfo.impactDistance}
+            targetBallNum={targetBallId}
+            spinStateAtImpact={aimInfo.spinStateAtImpact}
           />
 
           <GuideToggles
@@ -591,22 +662,56 @@ export const App: React.FC = () => {
 
         {/* Center: Interactive Table Canvas */}
         <div className="flex-1 flex flex-col items-center justify-center min-h-[460px] bg-slate-950/60 border border-slate-900 rounded-2xl p-2 relative shadow-inner">
-          {/* Active Drill Title Bar */}
-          {activeDrill && (
-            <div className="absolute top-3 left-4 right-4 flex items-center justify-between text-xs z-10 pointer-events-none">
-              <div className="flex items-center gap-2 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-slate-800">
-                <span className="font-mono font-bold text-sky-400">R{activeDrill.rack_num}</span>
-                <span className="font-bold text-slate-200">{activeDrill.name}</span>
-                <span className="text-[10px] text-slate-400">({activeDrill.difficulty})</span>
-              </div>
-
-              {activeDrill.run && activeDrill.run.length > 0 && (
-                <div className="bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-slate-800 text-[11px] text-amber-300 font-mono">
-                  Recommended: {activeDrill.run[0].ball} → {activeDrill.run[0].pocket} (Pwr {activeDrill.run[0].power})
-                </div>
+          {/* Dynamic Aim & Target Title Bar */}
+          <div className="absolute top-3 left-4 right-4 flex items-center justify-between text-xs z-10">
+            {/* Left: Drill Name & Active Target */}
+            <div className="flex items-center gap-2 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-800 shadow">
+              {activeDrill && (
+                <>
+                  <span className="font-mono font-bold text-sky-400">R{activeDrill.rack_num}</span>
+                  <span className="font-bold text-slate-200 hidden sm:inline">{activeDrill.name}</span>
+                  <span className="text-slate-600">·</span>
+                </>
+              )}
+              <span className="text-slate-300 font-semibold flex items-center gap-1.5">
+                Target: <span className="font-bold text-amber-300">Ball {targetBallId || 1}</span> →{' '}
+                <span className="font-mono font-bold text-cyan-400">{effectivePocketId}</span>
+              </span>
+              {bookPocketId && effectivePocketId !== bookPocketId && (
+                <span className="text-[10px] text-slate-400 font-mono bg-slate-800 px-1.5 py-0.5 rounded">
+                  Book: {bookPocketId}
+                </span>
               )}
             </div>
-          )}
+
+            {/* Right: Quick Pocket Selectors (P1..P6) */}
+            <div className="flex items-center gap-1 bg-slate-900/90 backdrop-blur-md px-2 py-1 rounded-xl border border-slate-800 shadow">
+              <span className="text-[10px] text-slate-400 mr-1 hidden md:inline">Pocket:</span>
+              {(['P1', 'P2', 'P3', 'P4', 'P5', 'P6'] as const).map((pid) => (
+                <button
+                  key={pid}
+                  onClick={() => setSelectedPocketId(pid)}
+                  className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold transition ${
+                    effectivePocketId === pid
+                      ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
+                      : 'bg-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-700'
+                  }`}
+                  title={`Target Pocket ${pid}`}
+                >
+                  {pid}
+                </button>
+              ))}
+              {selectedPocketId && (
+                <button
+                  onClick={() => setSelectedPocketId(null)}
+                  className="text-[9px] text-slate-500 hover:text-slate-300 px-1 py-0.5 rounded transition"
+                  title="Return to auto-detecting pocket based on aim direction"
+                >
+                  Auto
+                </button>
+              )}
+            </div>
+          </div>
 
           {/* Coach Advice Floating Card */}
           {coachingAdvice && (
@@ -616,7 +721,7 @@ export const App: React.FC = () => {
                 onApplyRecommended={(recShot) => {
                   setShot(recShot);
                   setCoachingAdvice(null);
-                  showNotification('Applied recommended aim angle, tip spin, and power!');
+                  showNotification(`Applied recommended aim & stroke for ${effectivePocketId}!`);
                 }}
                 onDismiss={() => setCoachingAdvice(null)}
                 onRetry={() => {
@@ -637,10 +742,15 @@ export const App: React.FC = () => {
             guides={guides}
             onAimAngleChange={(angle) => setShot((prev) => ({ ...prev, angleRad: angle }))}
             onBallMove={handleBallMove}
-            onAddBall={(num, x, y) => handleAddBall(num)}
+            onAddBall={(num) => handleAddBall(num)}
             onRemoveBall={handleRemoveBall}
             targetBallId={targetBallId}
             onSelectTargetBall={(id) => setTargetBallId(id)}
+            activeTargetPocketId={effectivePocketId}
+            onSelectPocket={(pId) => {
+              setSelectedPocketId(pId);
+              showNotification(`Target pocket locked: ${pId}`);
+            }}
           />
 
           {/* Quick Ball Tool Shelf at bottom of canvas */}
@@ -705,7 +815,7 @@ export const App: React.FC = () => {
             </h4>
             <div className="space-y-1.5 text-[11px] text-slate-300 leading-tight">
               <div className="p-1.5 rounded bg-slate-950/80 border border-slate-800">
-                <span className="font-bold text-cyan-300">Stun (90°):</span> No forward or backward roll at impact. Cue ball tracks pure tangent line!
+                <span className="font-bold text-cyan-300">Stop / Stun (90°):</span> No forward or backward roll at impact. Cue ball tracks pure tangent line!
               </div>
               <div className="p-1.5 rounded bg-slate-950/80 border border-slate-800">
                 <span className="font-bold text-emerald-300">Natural Roll (~30°):</span> Struck center/top over distance. Curves forward off tangent line.

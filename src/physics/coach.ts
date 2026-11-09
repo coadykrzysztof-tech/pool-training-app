@@ -35,19 +35,22 @@ export function analyzeShotAndCoach(
   simResult: SimulationResult,
   activeDrill: Drill | null,
   config: TableConfig,
-  allBalls: Ball[] = []
+  allBalls: Ball[] = [],
+  aimedPocketId?: string | null
 ): CoachingAdvice | null {
   if (!targetBall) return null;
 
   const R = config.ballRadiusM;
   const pockets = getTablePockets(config);
 
-  // 1. Identify target pocket
+  // 1. Identify target pocket: prioritize player's actual aimed pocket over drill book default
   const runStep = activeDrill?.run?.find((s) => s.ball === targetBall.id) || (activeDrill?.run ? activeDrill.run[0] : null);
-  let targetPocketId = runStep?.pocket || 'P5';
+  const bookPocketId = runStep?.pocket || null;
+
+  let targetPocketId = aimedPocketId || bookPocketId || 'P5';
   let targetPocket = pockets.find((p) => p.id === targetPocketId);
 
-  // If not in drill run, find pocket with cleanest pocketing path
+  // If pocket not found, fallback to closest
   if (!targetPocket) {
     let bestDist = Infinity;
     for (const p of pockets) {
@@ -100,21 +103,26 @@ export function analyzeShotAndCoach(
   const isCutToRight = crossZ > 0;
 
   // 4. Aim Advice Formulation
+  const isDifferentFromBook = bookPocketId && targetPocketId !== bookPocketId;
+  const bookNote = isDifferentFromBook
+    ? ` (Adjusted for your shot on ${targetPocketId}; drill book planned for ${bookPocketId}).`
+    : '';
+
   let aimAdvice = '';
   if (Math.abs(diffDeg) <= 0.6) {
-    aimAdvice = `Aim was on line (${userAimDeg.toFixed(1)}°). Your line through the ghost ball matched pocket ${targetPocket.id}.`;
+    aimAdvice = `Aim was on line (${userAimDeg.toFixed(1)}°). Your line through the ghost ball matched pocket ${targetPocket.id}.${bookNote}`;
   } else if (isCutToRight) {
     if (diffDeg > 0) {
-      aimAdvice = `You aimed at ${userAimDeg.toFixed(1)}°, which was ${Math.abs(diffDeg).toFixed(1)}° too far right (cut too thin). Aim fuller at ${idealAimDeg.toFixed(1)}° to drive the ball into ${targetPocket.id}.`;
+      aimAdvice = `You aimed at ${userAimDeg.toFixed(1)}° for ${targetPocket.id}, which was ${Math.abs(diffDeg).toFixed(1)}° too far right (cut too thin). Aim fuller at ${idealAimDeg.toFixed(1)}° to drive the ball into ${targetPocket.id}.${bookNote}`;
     } else {
-      aimAdvice = `You aimed at ${userAimDeg.toFixed(1)}°, which was ${Math.abs(diffDeg).toFixed(1)}° too full / thick. Aim ${Math.abs(diffDeg).toFixed(1)}° further right to ${idealAimDeg.toFixed(1)}° to achieve the required cut.`;
+      aimAdvice = `You aimed at ${userAimDeg.toFixed(1)}° for ${targetPocket.id}, which was ${Math.abs(diffDeg).toFixed(1)}° too full / thick. Aim ${Math.abs(diffDeg).toFixed(1)}° further right to ${idealAimDeg.toFixed(1)}° for ${targetPocket.id}.${bookNote}`;
     }
   } else {
     // Cut to Left
     if (diffDeg < 0) {
-      aimAdvice = `You aimed at ${userAimDeg.toFixed(1)}°, which was ${Math.abs(diffDeg).toFixed(1)}° too far left (cut too thin). Aim fuller at ${idealAimDeg.toFixed(1)}° into ${targetPocket.id}.`;
+      aimAdvice = `You aimed at ${userAimDeg.toFixed(1)}° for ${targetPocket.id}, which was ${Math.abs(diffDeg).toFixed(1)}° too far left (cut too thin). Aim fuller at ${idealAimDeg.toFixed(1)}° into ${targetPocket.id}.${bookNote}`;
     } else {
-      aimAdvice = `You aimed at ${userAimDeg.toFixed(1)}°, which was ${Math.abs(diffDeg).toFixed(1)}° too full / thick. Aim ${Math.abs(diffDeg).toFixed(1)}° further left to ${idealAimDeg.toFixed(1)}° for pocket ${targetPocket.id}.`;
+      aimAdvice = `You aimed at ${userAimDeg.toFixed(1)}° for ${targetPocket.id}, which was ${Math.abs(diffDeg).toFixed(1)}° too full / thick. Aim ${Math.abs(diffDeg).toFixed(1)}° further left to ${idealAimDeg.toFixed(1)}° for ${targetPocket.id}.${bookNote}`;
     }
   }
 
