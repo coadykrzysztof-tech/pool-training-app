@@ -32,24 +32,31 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
   // Squirt deflection angle in degrees
   const squirtDeg = ((-squirtFactor * (shot.tipOffsetX || 0) * 180) / Math.PI).toFixed(1);
 
-  // Calibrated Stop Shot calculation for target distance
+  // Calibrated Stop Shot calculation for target distance: always at least -0.20R (just below center)
   const distM = targetDistance && targetDistance > 0 ? targetDistance : 0.8;
   const distFt = (distM * 3.28084).toFixed(1);
   const v0 = Math.max(1.0, shot.speedMs || 2.0);
   const mu_s = 0.20;
   const g = 9.81;
-  const calcStopAy = Math.min(0.55, Math.max(0.04, (mu_s * g * distM) / (v0 * v0)));
+  const calcStopAy = Math.min(0.55, Math.max(0.20, (mu_s * g * distM) / (v0 * v0)));
   const stopTipY = -Math.round(calcStopAy * 100) / 100;
 
+  // Unambiguous detection of Center Ball vs Stop Shot
+  const isCurrentCenterBall =
+    Math.abs(shot.tipOffsetX || 0) < 0.06 && Math.abs(shot.tipOffsetY || 0) < 0.08;
+
   const isCurrentStopShot =
-    Math.abs(shot.tipOffsetX) < 0.08 && Math.abs(shot.tipOffsetY - stopTipY) < 0.08;
+    !isCurrentCenterBall &&
+    Math.abs(shot.tipOffsetX || 0) < 0.08 &&
+    shot.tipOffsetY <= -0.15 &&
+    Math.abs(shot.tipOffsetY - stopTipY) < 0.12;
 
   // Label text for vertical spin
   let verticalText = '';
-  if (isCurrentStopShot) {
-    verticalText = `🎯 Stop Shot (${stopTipY}R · Zero Spin at Impact)`;
-  } else if (Math.abs(shot.tipOffsetY) < 0.08) {
-    verticalText = 'Center Ball (Stun at Close Range)';
+  if (isCurrentCenterBall) {
+    verticalText = 'Center Ball (0.00 · Natural Roll over distance)';
+  } else if (isCurrentStopShot) {
+    verticalText = `🎯 Stop Shot (${stopTipY}R · Just below center · Dead stop/stun)`;
   } else if (shot.tipOffsetY > 0) {
     verticalText = `+${shot.tipOffsetY.toFixed(2)}R High (Follow)`;
   } else {
@@ -251,17 +258,18 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
               ? 'bg-cyan-600 text-white border-cyan-400 shadow'
               : 'bg-slate-800/80 text-cyan-300 border-cyan-900/60 hover:bg-slate-750'
           }`}
-          title="Stop Shot: Calibrated for zero rotational spin at impact"
+          title="Stop Shot: Strike just below center for zero spin at impact"
         >
           🎯 Stop Shot
         </button>
         <button
           onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: 0 })}
           className={`px-1.5 py-1 text-[11px] font-semibold rounded border transition ${
-            Math.abs(shot.tipOffsetY) < 0.1 && Math.abs(shot.tipOffsetX) < 0.1 && !isCurrentStopShot
-              ? 'bg-sky-600 text-white border-sky-400'
+            isCurrentCenterBall
+              ? 'bg-sky-600 text-white border-sky-400 shadow'
               : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-750'
           }`}
+          title="Center Ball: Strike ball dead center (0, 0)"
         >
           Center Ball
         </button>
@@ -272,18 +280,20 @@ export const CueBallDiagram: React.FC<CueBallDiagramProps> = ({
               ? 'bg-emerald-600 text-white border-emerald-400'
               : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-750'
           }`}
+          title="Follow: High top-spin (+0.45R)"
         >
           Follow (+0.45R)
         </button>
         <button
-          onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: -0.45 })}
+          onClick={() => onShotChange({ tipOffsetX: 0, tipOffsetY: -0.55 })}
           className={`px-1.5 py-1 text-[11px] font-semibold rounded border transition ${
-            shot.tipOffsetY < -0.2 && Math.abs(shot.tipOffsetX) < 0.1 && !isCurrentStopShot
+            shot.tipOffsetY < -0.38 && Math.abs(shot.tipOffsetX) < 0.1 && !isCurrentStopShot
               ? 'bg-amber-600 text-white border-amber-400'
               : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-750'
           }`}
+          title="Deep Draw: Low backspin (-0.55R)"
         >
-          Deep Draw (-0.45R)
+          Deep Draw (-0.55R)
         </button>
         <button
           onClick={() => onShotChange({ tipOffsetX: -0.35, tipOffsetY: 0 })}

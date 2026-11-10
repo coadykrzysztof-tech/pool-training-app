@@ -58,11 +58,13 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
   // Dragging state
   const [draggingBallId, setDraggingBallId] = useState<number | null>(null);
   const [isAimingWithMouse, setIsAimingWithMouse] = useState<boolean>(false);
+  const [aimMode, setAimMode] = useState<'forward' | 'cue_stick' | null>(null);
   const [hoveredBallId, setHoveredBallId] = useState<number | null>(null);
 
   // Table screen dimensions calculated to maintain exact 2:1 aspect ratio
   const [scale, setScale] = useState<number>(450); // pixels per meter
-  const railPadding = 48; // pixels for wooden rail border & diamonds
+  const railPadding = 75; // pixels for wooden rail border, diamonds, and cue stick extension
+  const woodBorder = 44; // width of wooden rail border around cloth
 
   const isVertical = tableRotationDeg === 90 || tableRotationDeg === 270;
   const unrotatedWidth = config.lengthM * scale + railPadding * 2;
@@ -169,6 +171,8 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     isSimulating,
     draggingBallId,
     hoveredBallId,
+    isAimingWithMouse,
+    aimMode,
     cueBall,
     activeTargetPocketId,
   ]);
@@ -176,21 +180,26 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
   // Helper Drawing Functions
   const drawTableFrame = (ctx: CanvasRenderingContext2D) => {
     ctx.save();
+    const tableX = railPadding - woodBorder;
+    const tableY = railPadding - woodBorder;
+    const tableW = config.lengthM * scale + woodBorder * 2;
+    const tableH = config.widthM * scale + woodBorder * 2;
+
     // Dark mahogany/slate composite wood rail
     ctx.fillStyle = '#161922';
     ctx.beginPath();
-    ctx.roundRect(4, 4, unrotatedWidth - 8, unrotatedHeight - 8, 20);
+    ctx.roundRect(tableX, tableY, tableW, tableH, 18);
     ctx.fill();
 
     // Subtle brushed wood grain bevel
     ctx.strokeStyle = '#272a38';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 2.5;
     ctx.stroke();
 
     // Outer drop shadow
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
-    ctx.shadowBlur = 12;
-    ctx.shadowOffsetY = 6;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+    ctx.shadowBlur = 16;
+    ctx.shadowOffsetY = 7;
     ctx.restore();
   };
 
@@ -450,27 +459,102 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // 2. Cue stick visual behind cue ball
-    const stickLength = 140;
-    const cueStartX = cbScreenX - Math.cos(actualAimAngle) * (ballR + 10);
-    const cueStartY = cbScreenY - Math.sin(actualAimAngle) * (ballR + 10);
-    const cueEndX = cbScreenX - Math.cos(actualAimAngle) * (ballR + 10 + stickLength);
-    const cueEndY = cbScreenY - Math.sin(actualAimAngle) * (ballR + 10 + stickLength);
+    // 2. Extended realistic cue stick visual behind cue ball (extends beyond table rails)
+    const stickLength = Math.max(280, 0.72 * scale);
+    const tipGap = ballR + 6;
+    const cueStartX = cbScreenX - Math.cos(actualAimAngle) * tipGap;
+    const cueStartY = cbScreenY - Math.sin(actualAimAngle) * tipGap;
+    const cueEndX = cbScreenX - Math.cos(actualAimAngle) * (tipGap + stickLength);
+    const cueEndY = cbScreenY - Math.sin(actualAimAngle) * (tipGap + stickLength);
 
-    ctx.strokeStyle = '#d97706'; // Amber maple cue shaft
-    ctx.lineWidth = 5;
+    const uX = -Math.cos(actualAimAngle);
+    const uY = -Math.sin(actualAimAngle);
+
+    // Tip: Master Chalk Blue (5px)
+    ctx.strokeStyle = '#38bdf8';
+    ctx.lineWidth = 6;
+    ctx.lineCap = 'round';
     ctx.beginPath();
     ctx.moveTo(cueStartX, cueStartY);
+    ctx.lineTo(cueStartX + uX * 5, cueStartY + uY * 5);
+    ctx.stroke();
+
+    // Ferrule: Ivory White (12px)
+    const ferruleX = cueStartX + uX * 5;
+    const ferruleY = cueStartY + uY * 5;
+    const ferruleEndX = ferruleX + uX * 12;
+    const ferruleEndY = ferruleY + uY * 12;
+    ctx.strokeStyle = '#f8fafc';
+    ctx.lineWidth = 6.5;
+    ctx.lineCap = 'butt';
+    ctx.beginPath();
+    ctx.moveTo(ferruleX, ferruleY);
+    ctx.lineTo(ferruleEndX, ferruleEndY);
+    ctx.stroke();
+
+    // Shaft: Tapered Maple Wood
+    const shaftLen = stickLength * 0.52;
+    const jointX = ferruleEndX + uX * shaftLen;
+    const jointY = ferruleEndY + uY * shaftLen;
+    const shaftGrad = ctx.createLinearGradient(ferruleEndX, ferruleEndY, jointX, jointY);
+    shaftGrad.addColorStop(0, '#fef3c7');
+    shaftGrad.addColorStop(0.5, '#fde68a');
+    shaftGrad.addColorStop(1, '#d97706');
+    ctx.strokeStyle = shaftGrad;
+    ctx.lineWidth = 7.5;
+    ctx.beginPath();
+    ctx.moveTo(ferruleEndX, ferruleEndY);
+    ctx.lineTo(jointX, jointY);
+    ctx.stroke();
+
+    // Joint Collar: Silver & Ebony
+    const jointLen = 14;
+    const jointEndX = jointX + uX * jointLen;
+    const jointEndY = jointY + uY * jointLen;
+    ctx.strokeStyle = '#0f172a';
+    ctx.lineWidth = 9.5;
+    ctx.beginPath();
+    ctx.moveTo(jointX, jointY);
+    ctx.lineTo(jointEndX, jointEndY);
+    ctx.stroke();
+
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 9.5;
+    ctx.beginPath();
+    ctx.moveTo(jointX + uX * 4, jointY + uY * 4);
+    ctx.lineTo(jointX + uX * 6, jointY + uY * 6);
+    ctx.stroke();
+
+    // Butt & Wrap: Midnight Indigo Grip
+    const wrapEndX = cueEndX - uX * 18;
+    const wrapEndY = cueEndY - uY * 18;
+    ctx.strokeStyle = '#1e1b4b';
+    ctx.lineWidth = 11;
+    ctx.beginPath();
+    ctx.moveTo(jointEndX, jointEndY);
+    ctx.lineTo(wrapEndX, wrapEndY);
+    ctx.stroke();
+
+    // Butt Cap & Bumper (Black)
+    ctx.strokeStyle = '#09090b';
+    ctx.lineWidth = 12;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(wrapEndX, wrapEndY);
     ctx.lineTo(cueEndX, cueEndY);
     ctx.stroke();
 
-    // Cue tip
-    ctx.strokeStyle = '#38bdf8'; // Blue master chalk tip
-    ctx.lineWidth = 6;
+    // Aim Handle Grip Ring at Cue Butt (Touch/Drag to swivel cue stick smoothly)
+    const isGrabbingCue = isAimingWithMouse && aimMode === 'cue_stick';
     ctx.beginPath();
-    ctx.moveTo(cueStartX, cueStartY);
-    ctx.lineTo(cueStartX - Math.cos(actualAimAngle) * 6, cueStartY - Math.sin(actualAimAngle) * 6);
+    ctx.arc(cueEndX, cueEndY, isGrabbingCue ? 14 : 11, 0, Math.PI * 2);
+    ctx.fillStyle = isGrabbingCue ? 'rgba(56, 189, 248, 0.4)' : 'rgba(56, 189, 248, 0.15)';
+    ctx.fill();
+    ctx.strokeStyle = isGrabbingCue ? '#38bdf8' : 'rgba(56, 189, 248, 0.6)';
+    ctx.lineWidth = isGrabbingCue ? 2.5 : 1.5;
+    ctx.setLineDash(isGrabbingCue ? [] : [3, 3]);
     ctx.stroke();
+    ctx.setLineDash([]);
 
     // If an object ball is in line of fire
     if (aimInfo.hitTarget && aimInfo.ghostBallPos && aimInfo.targetBallPos) {
@@ -876,24 +960,41 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       return;
     }
 
-    // Check if clicked directly on a ball
+    // Check if clicked directly on an object ball (id > 0)
     const clickedBall = balls.find(
-      (b) => !b.isPocketed && Math.hypot(b.x - xm, b.y - ym) <= ballR * 1.5
+      (b) => !b.isPocketed && Math.hypot(b.x - xm, b.y - ym) <= ballR * 1.08
     );
 
-    if (clickedBall) {
+    if (clickedBall && clickedBall.id > 0) {
       setDraggingBallId(clickedBall.id);
-      if (clickedBall.id > 0) {
-        onSelectTargetBall(clickedBall.id);
-      }
-    } else {
-      // Clicked on table felt: rotate cue aim towards touch/mouse point without close-range inversion
-      if (cueBall && !cueBall.isPocketed) {
-        const dx = xm - cueBall.x;
-        const dy = ym - cueBall.y;
+      onSelectTargetBall(clickedBall.id);
+      return;
+    }
+
+    // Check if clicked directly on cue ball center
+    if (clickedBall && clickedBall.id === 0) {
+      setDraggingBallId(0);
+      return;
+    }
+
+    // Cue Stick & Aiming Interaction
+    if (cueBall && !cueBall.isPocketed) {
+      const dx = xm - cueBall.x;
+      const dy = ym - cueBall.y;
+
+      // Project click vector onto current aim direction
+      const dot = dx * Math.cos(shot.angleRad) + dy * Math.sin(shot.angleRad);
+
+      if (dot < -0.05) {
+        // Behind cue ball: user grabbed cue stick handle to swivel
+        setAimMode('cue_stick');
+        onAimAngleChange(Math.atan2(-dy, -dx));
+      } else {
+        // Ahead of cue ball: target aiming forward towards object ball or pocket
+        setAimMode('forward');
         onAimAngleChange(Math.atan2(dy, dx));
-        setIsAimingWithMouse(true);
       }
+      setIsAimingWithMouse(true);
     }
   };
 
@@ -907,7 +1008,7 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     // Hover detection
     if (!draggingBallId) {
       const hovered = balls.find(
-        (b) => !b.isPocketed && Math.hypot(b.x - xm, b.y - ym) <= R * 1.5
+        (b) => !b.isPocketed && Math.hypot(b.x - xm, b.y - ym) <= R * 1.15
       );
       setHoveredBallId(hovered ? hovered.id : null);
     }
@@ -930,10 +1031,16 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
       onBallMove(draggingBallId, newX, newY);
     } else if (isAimingWithMouse && cueBall && !cueBall.isPocketed) {
-      // Smooth steering towards pointer point
       const dx = xm - cueBall.x;
       const dy = ym - cueBall.y;
-      onAimAngleChange(Math.atan2(dy, dx));
+
+      if (aimMode === 'cue_stick') {
+        // Swiveling cue stick from behind the ball (smooth 360° pivot without flips)
+        onAimAngleChange(Math.atan2(-dy, -dx));
+      } else {
+        // Aiming forward towards target point
+        onAimAngleChange(Math.atan2(dy, dx));
+      }
     }
   };
 
@@ -946,6 +1053,7 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     }
     setDraggingBallId(null);
     setIsAimingWithMouse(false);
+    setAimMode(null);
   };
 
   return (

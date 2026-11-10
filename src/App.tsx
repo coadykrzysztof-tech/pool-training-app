@@ -189,7 +189,7 @@ export const App: React.FC = () => {
     const v0 = Math.max(1.0, shot.speedMs || 2.0);
     const mu_s = config.muSliding;
     const g = 9.81;
-    const calcStopAy = Math.min(0.55, Math.max(0.04, (mu_s * g * distM) / (v0 * v0)));
+    const calcStopAy = Math.min(0.55, Math.max(0.20, (mu_s * g * distM) / (v0 * v0)));
     return -Math.round(calcStopAy * 100) / 100;
   }, [aimInfo.impactDistance, shot.speedMs, config.muSliding]);
 

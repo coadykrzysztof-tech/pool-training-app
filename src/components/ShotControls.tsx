@@ -47,37 +47,40 @@ export const ShotControls: React.FC<ShotControlsProps> = ({
   return (
     <div className="flex flex-col bg-slate-900/90 border border-slate-800 rounded-xl p-3 shadow-lg select-none space-y-3">
       {/* Primary Action Buttons */}
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-2">
         <button
           onClick={onExecuteShot}
           disabled={isSimulating}
-          className={`flex-1 py-2.5 px-4 rounded-xl font-bold text-sm tracking-wide shadow-lg transition flex items-center justify-center gap-2 ${
+          className={`w-full py-2.5 px-4 rounded-xl font-bold text-sm tracking-wide shadow-lg transition flex items-center justify-center gap-2 ${
             isSimulating
               ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
               : 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 shadow-emerald-500/20 active:scale-[0.98]'
           }`}
+          title="Shoot / Simulate (Shortcut: Space)"
         >
           <Play className="w-4 h-4 fill-current" />
           <span>{isSimulating ? 'Simulating...' : 'Shoot / Simulate'}</span>
         </button>
 
-        <button
-          onClick={onResetShot}
-          className="py-2.5 px-3.5 bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 active:scale-[0.98]"
-          title="Reset balls to position before shot"
-        >
-          <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
-          <span>Reset</span>
-        </button>
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            onClick={onResetShot}
+            className="py-2 px-3 bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 rounded-xl font-semibold text-xs transition flex items-center justify-center gap-1.5 active:scale-[0.98]"
+            title="Reset balls to position before shot (Shortcut: R)"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
+            <span>Reset (R)</span>
+          </button>
 
-        <button
-          onClick={onRepeatShot}
-          className="py-2.5 px-3.5 bg-indigo-950/70 hover:bg-indigo-900/70 text-indigo-300 border border-indigo-700/60 rounded-xl font-semibold text-xs transition flex items-center gap-1.5 active:scale-[0.98]"
-          title="Repeat identical shot with tweaked settings"
-        >
-          <Repeat className="w-3.5 h-3.5 text-indigo-400" />
-          <span>Repeat</span>
-        </button>
+          <button
+            onClick={onRepeatShot}
+            className="py-2 px-3 bg-indigo-950/70 hover:bg-indigo-900/70 text-indigo-300 border border-indigo-700/60 rounded-xl font-semibold text-xs transition flex items-center justify-center gap-1.5 active:scale-[0.98]"
+            title="Repeat identical shot with tweaked settings (Shortcut: T)"
+          >
+            <Repeat className="w-3.5 h-3.5 text-indigo-400" />
+            <span>Repeat (T)</span>
+          </button>
+        </div>
       </div>
 
       {/* Shot Power & Speed Slider */}
