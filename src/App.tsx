@@ -38,11 +38,21 @@ import {
   Sparkles,
   Bookmark,
   Lightbulb,
+  RotateCw,
+  Play,
+  RotateCcw,
+  Repeat,
+  Compass,
 } from 'lucide-react';
 
 export const App: React.FC = () => {
-  // Table configuration (7ft, 8ft, 9ft)
-  const [config, setConfig] = useState<TableConfig>(TABLE_CONFIG_9FT);
+  // Table configuration: defaults to 7ft league table
+  const [config, setConfig] = useState<TableConfig>(() => {
+    const saved = localStorage.getItem('cuecraft_table_size');
+    if (saved === '9') return TABLE_CONFIG_9FT;
+    if (saved === '8') return TABLE_CONFIG_8FT;
+    return TABLE_CONFIG_7FT;
+  });
 
   // Active balls on the table
   const [balls, setBalls] = useState<Ball[]>([]);
@@ -53,6 +63,13 @@ export const App: React.FC = () => {
   const [activeDrill, setActiveDrill] = useState<Drill | null>(null);
   const [targetBallId, setTargetBallId] = useState<number | null>(1);
   const [selectedPocketId, setSelectedPocketId] = useState<string | null>(null);
+
+  // Table View Rotation (0, 90, 180, 270) & Auto "Shoot Away" orientation
+  const [tableRotationDeg, setTableRotationDeg] = useState<number>(() => {
+    const saved = localStorage.getItem('cuecraft_rotation');
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  const [autoShootAway, setAutoShootAway] = useState<boolean>(true);
 
   // Shot settings
   const [shot, setShot] = useState<ShotSettings>({
@@ -105,8 +122,19 @@ export const App: React.FC = () => {
 
   // Status notification pill
   const [notification, setNotification] = useState<string | null>(
-    'Welcome! Aim at any pocket — CueCraft adjusts dynamically with you.'
+    'Welcome! 7-Foot League Table active · Shoot Away auto-orientation enabled.'
   );
+
+  // Auto-Orient to always shoot away from player (upwards into table)
+  useEffect(() => {
+    if (!autoShootAway) return;
+    const sinAngle = Math.sin(shot.angleRad);
+    if (sinAngle > 0.08 && tableRotationDeg !== 180) {
+      setTableRotationDeg(180);
+    } else if (sinAngle < -0.08 && tableRotationDeg !== 0) {
+      setTableRotationDeg(0);
+    }
+  }, [shot.angleRad, autoShootAway, tableRotationDeg]);
 
   // Load Rack 1 on initial mount
   useEffect(() => {
@@ -154,6 +182,27 @@ export const App: React.FC = () => {
   // Dynamically determine effective target pocket:
   // Priority: 1. User manual selection -> 2. Raycast cut aim direction -> 3. Drill book default -> 4. 'P5'
   const effectivePocketId = selectedPocketId || aimInfo.aimedPocketId || bookPocketId || 'P5';
+
+  // Table Size Switching with proportional ball repositioning
+  const handleTableSizeChange = (newSize: 7 | 8 | 9) => {
+    const newCfg = newSize === 7 ? TABLE_CONFIG_7FT : newSize === 8 ? TABLE_CONFIG_8FT : TABLE_CONFIG_9FT;
+    const ratioX = newCfg.lengthM / config.lengthM;
+    const ratioY = newCfg.widthM / config.widthM;
+
+    setConfig(newCfg);
+    localStorage.setItem('cuecraft_table_size', newSize.toString());
+
+    setBalls((prev) =>
+      prev.map((b) => ({
+        ...b,
+        x: b.x * ratioX,
+        y: b.y * ratioY,
+        radius: newCfg.ballRadiusM,
+        mass: newCfg.ballMassKg,
+      }))
+    );
+    showNotification(`Switched to ${newCfg.name}`);
+  };
 
   // Load a drill into playable table layout
   const loadDrill = useCallback(
@@ -492,7 +541,7 @@ export const App: React.FC = () => {
     }, 150);
   };
 
-  // Keyboard Shortcuts (Space: shoot, R: reset, T: repeat)
+  // Keyboard Shortcuts (Space: shoot, R: reset, T: repeat, F: flip 180)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
@@ -510,6 +559,11 @@ export const App: React.FC = () => {
       } else if (e.code === 'KeyT') {
         e.preventDefault();
         handleRepeatShot();
+      } else if (e.code === 'KeyF') {
+        e.preventDefault();
+        setTableRotationDeg((curr) => (curr === 180 ? 0 : 180));
+        setAutoShootAway(false);
+        showNotification('Table rotated 180° (F)');
       }
     };
 
@@ -523,7 +577,7 @@ export const App: React.FC = () => {
       : null;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none max-w-[100vw] overflow-x-hidden">
       {/* Top Header Bar */}
       <header className="h-14 border-b border-slate-800 bg-slate-900/90 px-4 flex items-center justify-between sticky top-0 z-30 backdrop-blur-md">
         <div className="flex items-center gap-3">
@@ -534,7 +588,7 @@ export const App: React.FC = () => {
             <h1 className="text-sm font-bold tracking-tight text-slate-100 flex items-center gap-2">
               CueCraft Pro
               <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded bg-sky-950 text-sky-400 border border-sky-800/80">
-                Dynamic Aim
+                7ft League Ready
               </span>
             </h1>
             <p className="text-[10px] text-slate-400">Tangent Line & Position Trainer</p>
@@ -557,12 +611,7 @@ export const App: React.FC = () => {
             {([7, 8, 9] as const).map((sz) => (
               <button
                 key={sz}
-                onClick={() => {
-                  const newCfg =
-                    sz === 7 ? TABLE_CONFIG_7FT : sz === 8 ? TABLE_CONFIG_8FT : TABLE_CONFIG_9FT;
-                  setConfig(newCfg);
-                  showNotification(`Switched to ${newCfg.name}`);
-                }}
+                onClick={() => handleTableSizeChange(sz)}
                 className={`px-2.5 py-1 rounded font-semibold transition ${
                   config.sizeFt === sz
                     ? 'bg-sky-600 text-white shadow'
@@ -660,12 +709,12 @@ export const App: React.FC = () => {
           />
         </div>
 
-        {/* Center: Interactive Table Canvas */}
+        {/* Center: Interactive Table Canvas & Pinned Action Bar */}
         <div className="flex-1 flex flex-col items-center justify-center min-h-[460px] bg-slate-950/60 border border-slate-900 rounded-2xl p-2 relative shadow-inner">
-          {/* Dynamic Aim & Target Title Bar */}
-          <div className="absolute top-3 left-4 right-4 flex items-center justify-between text-xs z-10">
-            {/* Left: Drill Name & Active Target */}
-            <div className="flex items-center gap-2 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-800 shadow">
+          {/* Pinned Top Table Toolbar: Target, Quick Shoot, Reset, Rotation & Pockets */}
+          <div className="w-full flex flex-wrap items-center justify-between gap-2 bg-slate-900/90 backdrop-blur-md px-3 py-2 rounded-xl border border-slate-800 shadow mb-1.5 z-10">
+            {/* Left: Active Target Information */}
+            <div className="flex items-center gap-2 text-xs">
               {activeDrill && (
                 <>
                   <span className="font-mono font-bold text-sky-400">R{activeDrill.rack_num}</span>
@@ -684,38 +733,115 @@ export const App: React.FC = () => {
               )}
             </div>
 
-            {/* Right: Quick Pocket Selectors (P1..P6) */}
-            <div className="flex items-center gap-1 bg-slate-900/90 backdrop-blur-md px-2 py-1 rounded-xl border border-slate-800 shadow">
-              <span className="text-[10px] text-slate-400 mr-1 hidden md:inline">Pocket:</span>
-              {(['P1', 'P2', 'P3', 'P4', 'P5', 'P6'] as const).map((pid) => (
-                <button
-                  key={pid}
-                  onClick={() => setSelectedPocketId(pid)}
-                  className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold transition ${
-                    effectivePocketId === pid
-                      ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                      : 'bg-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-700'
-                  }`}
-                  title={`Target Pocket ${pid}`}
-                >
-                  {pid}
-                </button>
-              ))}
-              {selectedPocketId && (
-                <button
-                  onClick={() => setSelectedPocketId(null)}
-                  className="text-[9px] text-slate-500 hover:text-slate-300 px-1 py-0.5 rounded transition"
-                  title="Return to auto-detecting pocket based on aim direction"
-                >
-                  Auto
-                </button>
-              )}
+            {/* Center: Pinned Quick Shot Actions (Shoot, Reset, Repeat, Ball in Hand) */}
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={handleExecuteShot}
+                disabled={isSimulating}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-bold text-xs shadow-md transition active:scale-95 ${
+                  isSimulating
+                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                    : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-700/30'
+                }`}
+                title="Shoot / Simulate (Shortcut: Space)"
+              >
+                <Play className="w-3.5 h-3.5 fill-current" />
+                <span>Shoot</span>
+              </button>
+
+              <button
+                onClick={handleResetShot}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition active:scale-95"
+                title="Reset Shot (Shortcut: R)"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Reset</span>
+              </button>
+
+              <button
+                onClick={handleRepeatShot}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition active:scale-95"
+                title="Repeat identical shot (Shortcut: T)"
+              >
+                <Repeat className="w-3.5 h-3.5" />
+                <span className="hidden md:inline">Repeat</span>
+              </button>
+            </div>
+
+            {/* Right: Table Rotation & Pockets */}
+            <div className="flex items-center gap-1.5">
+              {/* Shoot Away Auto-Orient Toggle */}
+              <button
+                onClick={() => setAutoShootAway((curr) => !curr)}
+                className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-semibold border transition ${
+                  autoShootAway
+                    ? 'bg-cyan-950/80 text-cyan-300 border-cyan-500/50 shadow-sm'
+                    : 'bg-slate-800 text-slate-400 border-slate-700'
+                }`}
+                title="Automatically rotate table so you are always shooting away from yourself"
+              >
+                <Compass className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="hidden sm:inline">Shoot Away:</span>
+                <span>{autoShootAway ? 'ON ⬆' : 'OFF'}</span>
+              </button>
+
+              {/* Flip 180° Button */}
+              <button
+                onClick={() => {
+                  setTableRotationDeg((r) => (r === 180 ? 0 : 180));
+                  setAutoShootAway(false);
+                  showNotification('Table flipped 180°');
+                }}
+                className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-semibold border transition ${
+                  tableRotationDeg === 180
+                    ? 'bg-sky-600 text-white border-sky-400'
+                    : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-750'
+                }`}
+                title="Flip table 180° (Shortcut: F)"
+              >
+                <RotateCw className="w-3.5 h-3.5" />
+                <span>180°</span>
+              </button>
+
+              {/* Portrait / Landscape 90° Button */}
+              <button
+                onClick={() => {
+                  setTableRotationDeg((r) => (r === 90 ? 0 : 90));
+                  setAutoShootAway(false);
+                }}
+                className={`px-1.5 py-1 rounded-lg text-[11px] font-mono font-semibold border transition ${
+                  tableRotationDeg === 90
+                    ? 'bg-indigo-600 text-white border-indigo-400'
+                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-200'
+                }`}
+                title="Toggle Portrait / Landscape View"
+              >
+                90°
+              </button>
+
+              {/* Pocket Selectors (P1..P6) */}
+              <div className="flex items-center gap-0.5 bg-slate-950/80 p-0.5 rounded-lg border border-slate-800">
+                {(['P1', 'P2', 'P3', 'P4', 'P5', 'P6'] as const).map((pid) => (
+                  <button
+                    key={pid}
+                    onClick={() => setSelectedPocketId(pid)}
+                    className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold transition ${
+                      effectivePocketId === pid
+                        ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                    title={`Target Pocket ${pid}`}
+                  >
+                    {pid}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Coach Advice Floating Card */}
           {coachingAdvice && (
-            <div className="absolute top-12 left-1/2 -translate-x-1/2 z-20 max-w-md w-full px-4 drop-shadow-2xl">
+            <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20 max-w-md w-full px-4 drop-shadow-2xl">
               <CoachFeedback
                 advice={coachingAdvice}
                 onApplyRecommended={(recShot) => {
@@ -751,6 +877,7 @@ export const App: React.FC = () => {
               setSelectedPocketId(pId);
               showNotification(`Target pocket locked: ${pId}`);
             }}
+            tableRotationDeg={tableRotationDeg}
           />
 
           {/* Quick Ball Tool Shelf at bottom of canvas */}
@@ -825,7 +952,7 @@ export const App: React.FC = () => {
               </div>
             </div>
             <p className="text-[10px] text-slate-500 italic">
-              Shortcut: Space = Shoot/Pause · R = Reset · T = Repeat
+              Shortcut: Space = Shoot/Pause · R = Reset · T = Repeat · F = Flip 180°
             </p>
           </div>
         </div>

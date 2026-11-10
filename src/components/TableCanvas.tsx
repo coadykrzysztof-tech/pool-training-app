@@ -29,6 +29,7 @@ interface TableCanvasProps {
   onSelectTargetBall: (ballId: number | null) => void;
   activeTargetPocketId?: string | null;
   onSelectPocket?: (pocketId: string) => void;
+  tableRotationDeg?: number; // 0, 90, 180, 270
 }
 
 export const TableCanvas: React.FC<TableCanvasProps> = ({
@@ -45,6 +46,7 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
   onSelectTargetBall,
   activeTargetPocketId,
   onSelectPocket,
+  tableRotationDeg = 0,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -58,30 +60,35 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
   const [scale, setScale] = useState<number>(450); // pixels per meter
   const railPadding = 48; // pixels for wooden rail border & diamonds
 
-  const tableWidthPx = config.lengthM * scale;
-  const tableHeightPx = config.widthM * scale;
-  const canvasWidth = tableWidthPx + railPadding * 2;
-  const canvasHeight = tableHeightPx + railPadding * 2;
+  const isVertical = tableRotationDeg === 90 || tableRotationDeg === 270;
+  const unrotatedWidth = config.lengthM * scale + railPadding * 2;
+  const unrotatedHeight = config.widthM * scale + railPadding * 2;
+
+  const canvasWidth = isVertical ? unrotatedHeight : unrotatedWidth;
+  const canvasHeight = isVertical ? unrotatedWidth : unrotatedHeight;
 
   // Resize observer to auto-fit table cleanly in view
   useEffect(() => {
     const handleResize = () => {
       if (!containerRef.current) return;
-      const availWidth = containerRef.current.clientWidth - 32;
-      const availHeight = window.innerHeight - 340; // leave room for controls & header
+      const availWidth = containerRef.current.clientWidth - 24;
+      const availHeight = window.innerHeight - 340; // leave room for controls & toolbar
 
-      const maxScaleW = (availWidth - railPadding * 2) / config.lengthM;
-      const maxScaleH = (availHeight - railPadding * 2) / config.widthM;
-      const optimalScale = Math.max(250, Math.min(520, Math.min(maxScaleW, maxScaleH)));
+      const dimW = isVertical ? config.widthM : config.lengthM;
+      const dimH = isVertical ? config.lengthM : config.widthM;
+
+      const maxScaleW = (availWidth - railPadding * 2) / dimW;
+      const maxScaleH = (availHeight - railPadding * 2) / dimH;
+      const optimalScale = Math.max(180, Math.min(520, Math.min(maxScaleW, maxScaleH)));
       setScale(optimalScale);
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [config.lengthM, config.widthM]);
+  }, [config.lengthM, config.widthM, isVertical]);
 
-  // Coordinate transforms
+  // Coordinate transforms (in unrotated table space)
   const toScreenX = useCallback((xm: number) => railPadding + xm * scale, [scale, railPadding]);
   const toScreenY = useCallback((ym: number) => railPadding + ym * scale, [scale, railPadding]);
   const toMetersX = useCallback((px: number) => (px - railPadding) / scale, [scale, railPadding]);
@@ -105,6 +112,12 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     ctx.scale(dpr, dpr);
 
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    // Apply Table View Rotation around center of canvas
+    ctx.save();
+    ctx.translate(canvasWidth / 2, canvasHeight / 2);
+    ctx.rotate((tableRotationDeg * Math.PI) / 180);
+    ctx.translate(-unrotatedWidth / 2, -unrotatedHeight / 2);
 
     // 1. Draw Wooden Table Rails & Frame
     drawTableFrame(ctx);
@@ -135,9 +148,14 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
         drawBallHUD(ctx, b);
       }
     }
+
+    ctx.restore();
   }, [
     canvasWidth,
     canvasHeight,
+    unrotatedWidth,
+    unrotatedHeight,
+    tableRotationDeg,
     config,
     scale,
     displayBalls,
@@ -148,6 +166,7 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     draggingBallId,
     hoveredBallId,
     cueBall,
+    activeTargetPocketId,
   ]);
 
   // Helper Drawing Functions
@@ -156,55 +175,68 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     // Dark mahogany/slate composite wood rail
     ctx.fillStyle = '#161922';
     ctx.beginPath();
-    ctx.roundRect(4, 4, canvasWidth - 8, canvasHeight - 8, 20);
+    ctx.roundRect(4, 4, unrotatedWidth - 8, unrotatedHeight - 8, 20);
     ctx.fill();
 
-    // Subtle brushed inner bevel
-    ctx.strokeStyle = '#2d3345';
-    ctx.lineWidth = 3;
+    // Subtle brushed wood grain bevel
+    ctx.strokeStyle = '#272a38';
+    ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Table drop shadow
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+    // Outer drop shadow
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
     ctx.shadowBlur = 12;
+    ctx.shadowOffsetY = 6;
     ctx.restore();
   };
 
   const drawCloth = (ctx: CanvasRenderingContext2D) => {
     ctx.save();
-    const x = railPadding;
-    const y = railPadding;
-    const w = tableWidthPx;
-    const h = tableHeightPx;
+    const tableWidthPx = config.lengthM * scale;
+    const tableHeightPx = config.widthM * scale;
 
-    // Tournament Electric Blue gradient
-    const grad = ctx.createLinearGradient(x, y, x + w, y + h);
-    grad.addColorStop(0, '#1a5f9c');
-    grad.addColorStop(0.5, '#1e68a8');
-    grad.addColorStop(1, '#155288');
-    ctx.fillStyle = grad;
-    ctx.fillRect(x, y, w, h);
+    // Simonis 860 Tournament Blue felt with subtle ambient gradient
+    const feltGrad = ctx.createRadialGradient(
+      unrotatedWidth / 2,
+      unrotatedHeight / 2,
+      scale * 0.4,
+      unrotatedWidth / 2,
+      unrotatedHeight / 2,
+      scale * 1.5
+    );
+    feltGrad.addColorStop(0, '#1d558a');
+    feltGrad.addColorStop(0.7, '#16436e');
+    feltGrad.addColorStop(1, '#0f3254');
 
-    // Inner cushion nose border
-    ctx.strokeStyle = '#0f385c';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(x, y, w, h);
+    ctx.fillStyle = feltGrad;
+    ctx.beginPath();
+    ctx.rect(railPadding, railPadding, tableWidthPx, tableHeightPx);
+    ctx.fill();
 
-    // Head string line (1/4 distance from left)
+    // Inner cushion bevel shadow
+    ctx.strokeStyle = '#0a233b';
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    // Subtle head string line (1/4 mark of table length)
+    const headStringX = railPadding + (tableWidthPx / 4);
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
-    ctx.moveTo(x + w * 0.25, y);
-    ctx.lineTo(x + w * 0.25, y + h);
+    ctx.moveTo(headStringX, railPadding);
+    ctx.lineTo(headStringX, railPadding + tableHeightPx);
     ctx.stroke();
-
-    // Center spot & foot spot
     ctx.setLineDash([]);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
-    [0.25, 0.5, 0.75].forEach((frac) => {
+
+    // Head spot & foot spot
+    const footSpotX = railPadding + (tableWidthPx * 3) / 4;
+    const centerY = railPadding + tableHeightPx / 2;
+
+    [headStringX, footSpotX].forEach((x) => {
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
       ctx.beginPath();
-      ctx.arc(x + w * frac, y + h * 0.5, 3, 0, Math.PI * 2);
+      ctx.arc(x, centerY, 3, 0, Math.PI * 2);
       ctx.fill();
     });
 
@@ -213,15 +245,16 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
   const drawCoordinateGrid = (ctx: CanvasRenderingContext2D) => {
     ctx.save();
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-    ctx.lineWidth = 0.8;
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+    ctx.lineWidth = 0.5;
 
-    // Columns 1 to 50 (aligned with playable ball centers)
     const R = config.ballRadiusM;
     const playableWidthPx = (config.lengthM - 2 * R) * scale;
     const playableHeightPx = (config.widthM - 2 * R) * scale;
     const startX = railPadding + R * scale;
     const startY = railPadding + R * scale;
+    const tableWidthPx = config.lengthM * scale;
+    const tableHeightPx = config.widthM * scale;
 
     const colStep = playableWidthPx / 49;
     for (let c = 1; c <= 50; c++) {
@@ -233,15 +266,19 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
       // Column labels on top rail
       if (c === 1 || c === 50 || c % 5 === 0) {
+        ctx.save();
+        ctx.translate(gx, railPadding - 10);
+        ctx.rotate((-tableRotationDeg * Math.PI) / 180);
         ctx.fillStyle = '#94a3b8';
         ctx.font = '600 9px "JetBrains Mono", monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(c.toString(), gx, railPadding - 10);
-        ctx.fillText(c.toString(), gx, railPadding + tableHeightPx + 18);
+        ctx.textBaseline = 'middle';
+        ctx.fillText(c.toString(), 0, 0);
+        ctx.restore();
       }
     }
 
-    // Rows A to Z (26 letters, 25 intervals)
+    // Rows A to Z
     const rowStep = playableHeightPx / 25;
     for (let r = 1; r <= 26; r++) {
       const gy = startY + (r - 1) * rowStep;
@@ -252,12 +289,15 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
       const letter = String.fromCharCode(64 + r);
       if (r === 1 || r === 26 || r % 4 === 1) {
+        ctx.save();
+        ctx.translate(railPadding - 14, gy);
+        ctx.rotate((-tableRotationDeg * Math.PI) / 180);
         ctx.fillStyle = '#94a3b8';
         ctx.font = '700 9px "JetBrains Mono", monospace';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(letter, railPadding - 14, gy);
-        ctx.fillText(letter, railPadding + tableWidthPx + 14, gy);
+        ctx.fillText(letter, 0, 0);
+        ctx.restore();
       }
     }
     ctx.restore();
@@ -270,8 +310,9 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     ctx.shadowBlur = 2;
 
     const diamondSize = 4;
+    const tableWidthPx = config.lengthM * scale;
+    const tableHeightPx = config.widthM * scale;
 
-    // Helper to draw small diamond
     const renderDiamond = (cx: number, cy: number) => {
       ctx.beginPath();
       ctx.moveTo(cx, cy - diamondSize);
@@ -282,19 +323,19 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       ctx.fill();
     };
 
-    // Long rails: 8 segments (diamonds at 1/8, 2/8, 3/8, 5/8, 6/8, 7/8; 4/8 is side pocket)
+    // Long rails: 8 segments
     for (let i = 1; i < 8; i++) {
       if (i === 4) continue; // Side pocket
       const x = railPadding + (tableWidthPx * i) / 8;
-      renderDiamond(x, railPadding - 24); // Top rail
-      renderDiamond(x, railPadding + tableHeightPx + 24); // Bottom rail
+      renderDiamond(x, railPadding - 24);
+      renderDiamond(x, railPadding + tableHeightPx + 24);
     }
 
-    // Short rails: 4 segments (diamonds at 1/4, 2/4, 3/4)
+    // Short rails: 4 segments
     for (let j = 1; j < 4; j++) {
       const y = railPadding + (tableHeightPx * j) / 4;
-      renderDiamond(railPadding - 24, y); // Left rail
-      renderDiamond(railPadding + tableWidthPx + 24, y); // Right rail
+      renderDiamond(railPadding - 24, y);
+      renderDiamond(railPadding + tableWidthPx + 24, y);
     }
 
     ctx.restore();
@@ -311,7 +352,7 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       const isTarget = activeTargetPocketId === p.id;
 
       if (isTarget) {
-        // Glowing target ring
+        // Glowing animated target ring
         ctx.beginPath();
         ctx.arc(sx, sy, sr + 6, 0, Math.PI * 2);
         ctx.strokeStyle = '#06b6d4';
@@ -338,15 +379,32 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       ctx.lineWidth = isTarget ? 4 : 3;
       ctx.stroke();
 
-      // Pocket ID label (P1..P6)
+      // Pocket ID label (counter-rotated to stay upright)
+      const labelOffset = p.isCorner ? (p.y === 0 ? -14 : 14) : p.y === 0 ? -12 : 12;
+      ctx.save();
+      ctx.translate(sx, sy + labelOffset);
+      ctx.rotate((-tableRotationDeg * Math.PI) / 180);
       ctx.fillStyle = isTarget ? '#22d3ee' : '#64748b';
       ctx.font = isTarget ? '700 12px "JetBrains Mono", monospace' : '700 10px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      const labelOffset = p.isCorner ? (p.y === 0 ? -14 : 14) : p.y === 0 ? -12 : 12;
-      ctx.fillText(isTarget ? `🎯 ${p.id}` : p.id, sx, sy + labelOffset);
+      ctx.fillText(isTarget ? `🎯 ${p.id}` : p.id, 0, 0);
+      ctx.restore();
     });
 
+    ctx.restore();
+  };
+
+  const drawArrowhead = (ctx: CanvasRenderingContext2D, fromX: number, fromY: number, toX: number, toY: number, color: string, size: number = 8) => {
+    const angle = Math.atan2(toY - fromY, toX - fromX);
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(toX, toY);
+    ctx.lineTo(toX - size * Math.cos(angle - Math.PI / 6), toY - size * Math.sin(angle - Math.PI / 6));
+    ctx.lineTo(toX - size * Math.cos(angle + Math.PI / 6), toY - size * Math.sin(angle + Math.PI / 6));
+    ctx.closePath();
+    ctx.fill();
     ctx.restore();
   };
 
@@ -360,13 +418,17 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
     // 1. Aim direction line (dotted white cue-stick extension)
     const aimLength = 2.5 * scale;
+    const aimEndX = cbScreenX + Math.cos(actualAimAngle) * aimLength;
+    const aimEndY = cbScreenY + Math.sin(actualAimAngle) * aimLength;
+
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
     ctx.lineWidth = 1.5;
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
     ctx.moveTo(cbScreenX, cbScreenY);
-    ctx.lineTo(cbScreenX + Math.cos(actualAimAngle) * aimLength, cbScreenY + Math.sin(actualAimAngle) * aimLength);
+    ctx.lineTo(aimEndX, aimEndY);
     ctx.stroke();
+    ctx.setLineDash([]);
 
     // 2. Cue stick visual behind cue ball
     const stickLength = 140;
@@ -375,7 +437,6 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     const cueEndX = cbScreenX - Math.cos(actualAimAngle) * (ballR + 10 + stickLength);
     const cueEndY = cbScreenY - Math.sin(actualAimAngle) * (ballR + 10 + stickLength);
 
-    ctx.setLineDash([]);
     ctx.strokeStyle = '#d97706'; // Amber maple cue shaft
     ctx.lineWidth = 5;
     ctx.beginPath();
@@ -398,13 +459,14 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       const tbScreenX = toScreenX(aimInfo.targetBallPos.x);
       const tbScreenY = toScreenY(aimInfo.targetBallPos.y);
 
-      // Line from Cue Ball to Ghost Ball
+      // Line from Cue Ball to Ghost Ball with Arrowhead
       ctx.strokeStyle = '#38bdf8';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(cbScreenX, cbScreenY);
       ctx.lineTo(gbScreenX, gbScreenY);
       ctx.stroke();
+      drawArrowhead(ctx, cbScreenX, cbScreenY, gbScreenX, gbScreenY, '#38bdf8', 9);
 
       // Ghost Ball (transparent circle with dashed cyan rim)
       if (guides.showGhostBall) {
@@ -428,31 +490,37 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       // Line of Centers (Solid Amber Line passing through object ball into pocket)
       if (guides.showLineOfCenters) {
         const locLen = 1.6 * scale;
+        const targetEndX = gbScreenX + aimInfo.lineOfCenters.x * locLen;
+        const targetEndY = gbScreenY + aimInfo.lineOfCenters.y * locLen;
+
         ctx.strokeStyle = '#f59e0b'; // Amber yellow
         ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.moveTo(gbScreenX, gbScreenY);
-        ctx.lineTo(
-          gbScreenX + aimInfo.lineOfCenters.x * locLen,
-          gbScreenY + aimInfo.lineOfCenters.y * locLen
-        );
+        ctx.lineTo(targetEndX, targetEndY);
         ctx.stroke();
+        drawArrowhead(ctx, gbScreenX, gbScreenY, targetEndX, targetEndY, '#f59e0b', 10);
 
-        // Line of centers label
+        // Line of centers label (counter-rotated for readability)
+        ctx.save();
+        const lblX = tbScreenX + aimInfo.lineOfCenters.x * (ballR + 15);
+        const lblY = tbScreenY + aimInfo.lineOfCenters.y * (ballR + 15);
+        ctx.translate(lblX, lblY);
+        ctx.rotate((-tableRotationDeg * Math.PI) / 180);
         ctx.fillStyle = '#fef08a';
         ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
-        ctx.fillText(
-          `Target Line (${aimInfo.cutAngleDeg.toFixed(1)}° cut)`,
-          tbScreenX + aimInfo.lineOfCenters.x * (ballR + 15),
-          tbScreenY + aimInfo.lineOfCenters.y * (ballR + 15)
-        );
+        ctx.textAlign = 'center';
+        ctx.fillText(`Target Line (${aimInfo.cutAngleDeg.toFixed(1)}° cut)`, 0, 0);
+        ctx.restore();
       }
 
-      // 90° TANGENT LINE (THE CORE EDUCATIONAL OVERLAY!)
+      // 90° TANGENT LINE
       if (guides.showTangentLine) {
         const tangentLen = 1.3 * scale;
         const tx = aimInfo.tangentLine.x;
         const ty = aimInfo.tangentLine.y;
+        const tEndX = gbScreenX + tx * tangentLen;
+        const tEndY = gbScreenY + ty * tangentLen;
 
         ctx.strokeStyle = '#06b6d4'; // Bright Cyan
         ctx.lineWidth = 3;
@@ -460,9 +528,10 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
         ctx.beginPath();
         ctx.moveTo(gbScreenX, gbScreenY);
-        ctx.lineTo(gbScreenX + tx * tangentLen, gbScreenY + ty * tangentLen);
+        ctx.lineTo(tEndX, tEndY);
         ctx.stroke();
         ctx.setLineDash([]);
+        drawArrowhead(ctx, gbScreenX, gbScreenY, tEndX, tEndY, '#06b6d4', 10);
 
         // Draw 90-degree right angle indicator symbol at contact point
         const symbolSize = 14;
@@ -479,12 +548,16 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
         ctx.lineTo(gbScreenX + tx * symbolSize, gbScreenY + ty * symbolSize);
         ctx.stroke();
 
-        // 90° Tangent Line Badge
-        ctx.fillStyle = '#06b6d4';
-        ctx.font = '700 11px "JetBrains Mono", monospace';
+        // 90° Tangent Line Badge (counter-rotated)
+        ctx.save();
         const labelX = gbScreenX + tx * (tangentLen * 0.45);
         const labelY = gbScreenY + ty * (tangentLen * 0.45);
-        ctx.fillText('90° STUN TANGENT', labelX + 8, labelY - 8);
+        ctx.translate(labelX, labelY);
+        ctx.rotate((-tableRotationDeg * Math.PI) / 180);
+        ctx.fillStyle = '#06b6d4';
+        ctx.font = '700 11px "JetBrains Mono", monospace';
+        ctx.fillText('90° STUN TANGENT', 8, -8);
+        ctx.restore();
       }
 
       // Predicted Actual Cue Ball Trajectory & Curve
@@ -493,18 +566,15 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
         ctx.lineWidth = 2.5;
 
         if (aimInfo.spinStateAtImpact === 'pure_stun') {
-          // Pure stun travels right along the tangent line
           ctx.beginPath();
           ctx.moveTo(gbScreenX, gbScreenY);
           const pDist = 0.5 * scale;
           ctx.lineTo(gbScreenX + aimInfo.tangentLine.x * pDist, gbScreenY + aimInfo.tangentLine.y * pDist);
           ctx.stroke();
         } else {
-          // Curved path for follow or draw
           ctx.beginPath();
           ctx.moveTo(gbScreenX, gbScreenY);
 
-          // Quadratic bezier curve showing forward or draw deflection
           const curveFactor = aimInfo.spinStateAtImpact === 'sliding_draw' ? -0.3 : 0.4;
           const ctrlX = gbScreenX + aimInfo.tangentLine.x * (0.3 * scale);
           const ctrlY = gbScreenY + aimInfo.tangentLine.y * (0.3 * scale);
@@ -514,7 +584,10 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
           ctx.quadraticCurveTo(ctrlX, ctrlY, endX, endY);
           ctx.stroke();
 
-          // Trajectory label
+          // Trajectory label (counter-rotated)
+          ctx.save();
+          ctx.translate(endX + 6, endY);
+          ctx.rotate((-tableRotationDeg * Math.PI) / 180);
           ctx.fillStyle = '#cbd5e1';
           ctx.font = '600 10px "Plus Jakarta Sans", sans-serif';
           const label =
@@ -523,7 +596,8 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
               : aimInfo.spinStateAtImpact === 'sliding_draw'
               ? 'Draw Curve (Backspin)'
               : 'Follow Curve (Topspin)';
-          ctx.fillText(label, endX + 6, endY);
+          ctx.fillText(label, 0, 0);
+          ctx.restore();
         }
       }
     }
@@ -571,50 +645,78 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
         // Solid ball
         const solidGrad = ctx.createRadialGradient(sx - ballR * 0.3, sy - ballR * 0.3, 2, sx, sy, ballR);
         solidGrad.addColorStop(0, '#ffffff');
-        solidGrad.addColorStop(0.3, color.primary);
-        solidGrad.addColorStop(1, '#000000');
+        solidGrad.addColorStop(0.2, color.primary);
+        solidGrad.addColorStop(1, '#0a0a0f');
         ctx.fillStyle = solidGrad;
         ctx.fill();
-      } else {
-        // Striped ball
-        // White ball base
-        ctx.fillStyle = '#f8fafc';
-        ctx.fill();
 
-        // Colored stripe band
+        // White circle for number
         ctx.beginPath();
-        ctx.rect(sx - ballR, sy - ballR * 0.55, ballR * 2, ballR * 1.1);
-        ctx.fillStyle = color.primary;
-        ctx.fill();
-      }
-
-      // Ball Number Badge (white circle with crisp number)
-      if (b.id > 0) {
-        ctx.beginPath();
-        ctx.arc(sx, sy, ballR * 0.45, 0, Math.PI * 2);
+        ctx.arc(sx, sy, ballR * 0.42, 0, Math.PI * 2);
         ctx.fillStyle = '#ffffff';
         ctx.fill();
 
+        // Ball number (counter-rotated so it stays right-side up)
+        ctx.save();
+        ctx.translate(sx, sy);
+        ctx.rotate((-tableRotationDeg * Math.PI) / 180);
         ctx.fillStyle = '#0f172a';
-        ctx.font = `bold ${Math.max(9, Math.round(ballR * 0.55))}px "JetBrains Mono", monospace`;
+        ctx.font = '700 9px "JetBrains Mono", monospace';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(b.id.toString(), sx, sy + 0.5);
+        ctx.fillText(b.id.toString(), 0, 0);
+        ctx.restore();
+      } else {
+        // Striped ball
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        // Center colored stripe
+        ctx.beginPath();
+        ctx.rect(sx - ballR, sy - ballR * 0.5, ballR * 2, ballR);
+        ctx.fillStyle = color.primary;
+        ctx.fill();
+
+        // Outer circular clip
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // White circle for number
+        ctx.beginPath();
+        ctx.arc(sx, sy, ballR * 0.42, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        // Ball number (counter-rotated)
+        ctx.save();
+        ctx.translate(sx, sy);
+        ctx.rotate((-tableRotationDeg * Math.PI) / 180);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '700 9px "JetBrains Mono", monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(b.id.toString(), 0, 0);
+        ctx.restore();
       }
 
-      // Ball outline
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.arc(sx, sy, ballR, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Highlight ring if selected as target
+      // Target Ball Highlight ring
       if (b.id === targetBallId) {
-        ctx.strokeStyle = '#facc15';
-        ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.arc(sx, sy, ballR + 4, 0, Math.PI * 2);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([3, 3]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      // Ball selection/hover halo
+      if (b.id === hoveredBallId || b.id === draggingBallId) {
+        ctx.beginPath();
+        ctx.arc(sx, sy, ballR + 6, 0, Math.PI * 2);
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2;
         ctx.stroke();
       }
 
@@ -622,25 +724,29 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
     });
   };
 
-  const drawBallHUD = (ctx: CanvasRenderingContext2D, b: { id: number; x: number; y: number }) => {
+  const drawBallHUD = (ctx: CanvasRenderingContext2D, b: { id: number; x: number; y: number; isPocketed: boolean }) => {
+    ctx.save();
     const sx = toScreenX(b.x);
     const sy = toScreenY(b.y);
     const grid = metersToGrid(b.x, b.y, config);
-    const diamonds = metersToDiamonds(b.x, b.y, config);
+    const dia = metersToDiamonds(b.x, b.y, config);
 
-    ctx.save();
-    const text = b.id === 0 ? `Cue Ball: ${grid.row}-${grid.col}` : `Ball ${b.id}: ${grid.row}-${grid.col}`;
-    const subText = `Dia: L${diamonds.longRailDiamond.toFixed(1)} / S${diamonds.shortRailDiamond.toFixed(1)}`;
+    const text = b.id === 0 ? `Cue Ball` : `Ball ${b.id}`;
+    const subText = `${formatGridCoord(grid.col, grid.row)} · ${dia.longRailDiamond.toFixed(1)}x, ${dia.shortRailDiamond.toFixed(1)}y`;
 
-    ctx.font = '600 10px "JetBrains Mono", monospace';
-    const textWidth = Math.max(ctx.measureText(text).width, ctx.measureText(subText).width);
-    const boxW = textWidth + 16;
+    ctx.font = '700 11px "JetBrains Mono", monospace';
+    const boxW = Math.max(130, ctx.measureText(subText).width + 24);
     const boxH = 34;
-    const boxX = sx - boxW / 2;
-    const boxY = sy - 48;
+
+    // Position HUD above the ball, counter-rotated so it is always right-side up
+    ctx.translate(sx, sy);
+    ctx.rotate((-tableRotationDeg * Math.PI) / 180);
+
+    const boxX = -boxW / 2;
+    const boxY = -48;
 
     // HUD background pill
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
     ctx.beginPath();
     ctx.roundRect(boxX, boxY, boxW, boxH, 6);
     ctx.fill();
@@ -650,26 +756,47 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
     ctx.fillStyle = '#f8fafc';
     ctx.textAlign = 'center';
-    ctx.fillText(text, sx, boxY + 14);
+    ctx.fillText(text, 0, boxY + 14);
 
     ctx.fillStyle = '#94a3b8';
     ctx.font = '500 9px "JetBrains Mono", monospace';
-    ctx.fillText(subText, sx, boxY + 27);
+    ctx.fillText(subText, 0, boxY + 27);
 
     ctx.restore();
   };
 
-  // --- Mouse / Touch Event Handlers ---
-  const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  // --- Coordinate Unrotation Helper for Screen Pointer Events ---
+  const getUnrotatedMeters = (clientX: number, clientY: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return { xm: 0, ym: 0 };
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = clientX - rect.left;
+    const mouseY = clientY - rect.top;
+
+    const cx = canvasWidth / 2;
+    const cy = canvasHeight / 2;
+    const rad = (-tableRotationDeg * Math.PI) / 180;
+    const dx = mouseX - cx;
+    const dy = mouseY - cy;
+    const unrotatedX = unrotatedWidth / 2 + (dx * Math.cos(rad) - dy * Math.sin(rad));
+    const unrotatedY = unrotatedHeight / 2 + (dx * Math.sin(rad) + dy * Math.cos(rad));
+
+    return {
+      xm: (unrotatedX - railPadding) / scale,
+      ym: (unrotatedY - railPadding) / scale,
+    };
+  };
+
+  // --- Pointer Event Handlers (Touch, Pen, Mouse) ---
+  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas || isSimulating) return;
 
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    try {
+      canvas.setPointerCapture(e.pointerId);
+    } catch (_) {}
 
-    const xm = toMetersX(mouseX);
-    const ym = toMetersY(mouseY);
+    const { xm, ym } = getUnrotatedMeters(e.clientX, e.clientY);
     const ballR = config.ballRadiusM;
 
     // Check if clicked directly on a pocket
@@ -694,36 +821,21 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
         onSelectTargetBall(clickedBall.id);
       }
     } else {
-      // Clicked on empty table: rotate cue aim towards click
+      // Clicked on table felt: rotate cue aim towards touch/mouse point without close-range inversion
       if (cueBall && !cueBall.isPocketed) {
         const dx = xm - cueBall.x;
         const dy = ym - cueBall.y;
-        const mouseAngle = Math.atan2(dy, dx);
-        const dist = Math.hypot(dx, dy);
-
-        // Check if user clicked on the cue stick behind the ball
-        const cueBackAngle = (shot.angleRad + Math.PI) % (Math.PI * 2);
-        const angleDiff = Math.abs(((mouseAngle - cueBackAngle + Math.PI * 3) % (Math.PI * 2)) - Math.PI);
-
-        if (dist > 0.04 && dist < 0.45 && angleDiff < Math.PI * 0.4) {
-          onAimAngleChange(mouseAngle + Math.PI);
-        } else {
-          onAimAngleChange(mouseAngle);
-        }
+        onAimAngleChange(Math.atan2(dy, dx));
         setIsAimingWithMouse(true);
       }
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xm = toMetersX(mouseX);
-    const ym = toMetersY(mouseY);
+    const { xm, ym } = getUnrotatedMeters(e.clientX, e.clientY);
     const R = config.ballRadiusM;
 
     // Hover detection
@@ -736,16 +848,13 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
     // Dragging a ball (with anti-collision and cushion clamping)
     if (draggingBallId !== null) {
-      // Clamp within cushions
       let newX = Math.max(R, Math.min(config.lengthM - R, xm));
       let newY = Math.max(R, Math.min(config.widthM - R, ym));
 
-      // Check collision with all other balls to prevent overlap
       for (const other of balls) {
         if (other.id === draggingBallId || other.isPocketed) continue;
         const dist = Math.hypot(newX - other.x, newY - other.y);
         if (dist < 2 * R) {
-          // Push away along separation normal
           const nx = (newX - other.x) / (dist || 1);
           const ny = (newY - other.y) / (dist || 1);
           newX = other.x + nx * (2 * R + 0.001);
@@ -755,25 +864,19 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
       onBallMove(draggingBallId, newX, newY);
     } else if (isAimingWithMouse && cueBall && !cueBall.isPocketed) {
+      // Smooth steering towards pointer point
       const dx = xm - cueBall.x;
       const dy = ym - cueBall.y;
-      const mouseAngle = Math.atan2(dy, dx);
-      const dist = Math.hypot(dx, dy);
-
-      const cueBackAngle = (shot.angleRad + Math.PI) % (Math.PI * 2);
-      const angleDiff = Math.abs(((mouseAngle - cueBackAngle + Math.PI * 3) % (Math.PI * 2)) - Math.PI);
-
-      if (dist > 0.04 && dist < 0.45 && angleDiff < Math.PI * 0.4) {
-        onAimAngleChange(mouseAngle + Math.PI);
-      } else {
-        onAimAngleChange(mouseAngle);
-      }
+      onAimAngleChange(Math.atan2(dy, dx));
     }
   };
 
-  const handleMouseUp = () => {
-    if (draggingBallId !== null) {
-      soundFx.playCushionHit();
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      try {
+        canvas.releasePointerCapture(e.pointerId);
+      } catch (_) {}
     }
     setDraggingBallId(null);
     setIsAimingWithMouse(false);
@@ -782,19 +885,27 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
   return (
     <div
       ref={containerRef}
-      className="w-full flex flex-col items-center justify-center p-2 select-none"
+      className="w-full flex items-center justify-center p-1 relative overflow-hidden select-none"
     >
-      <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900/60 p-2">
-        <canvas
-          ref={canvasRef}
-          style={{ width: canvasWidth, height: canvasHeight }}
-          className="cursor-crosshair block rounded-xl shadow-inner"
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-        />
-      </div>
+      <canvas
+        ref={canvasRef}
+        style={{
+          width: canvasWidth,
+          height: canvasHeight,
+          maxWidth: '100%',
+          maxHeight: '76vh',
+        }}
+        className="rounded-2xl cursor-crosshair shadow-2xl touch-none"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        onPointerLeave={() => {
+          setHoveredBallId(null);
+          setIsAimingWithMouse(false);
+          setDraggingBallId(null);
+        }}
+      />
     </div>
   );
 };
