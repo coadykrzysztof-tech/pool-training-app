@@ -30,6 +30,8 @@ interface TableCanvasProps {
   activeTargetPocketId?: string | null;
   onSelectPocket?: (pocketId: string) => void;
   tableRotationDeg?: number; // 0, 90, 180, 270
+  predictedCuePath?: Vector2D[];
+  scratchPocketId?: string | null;
 }
 
 export const TableCanvas: React.FC<TableCanvasProps> = ({
@@ -47,6 +49,8 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
   activeTargetPocketId,
   onSelectPocket,
   tableRotationDeg = 0,
+  predictedCuePath = [],
+  scratchPocketId = null,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -350,8 +354,24 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       const sy = toScreenY(p.y);
       const sr = p.radius * scale;
       const isTarget = activeTargetPocketId === p.id;
+      const isScratch = scratchPocketId === p.id;
 
-      if (isTarget) {
+      if (isScratch) {
+        // Red glowing scratch warning ring
+        ctx.beginPath();
+        ctx.arc(sx, sy, sr + 7, 0, Math.PI * 2);
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 3.5;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(sx, sy, sr + 14, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      } else if (isTarget) {
         // Glowing animated target ring
         ctx.beginPath();
         ctx.arc(sx, sy, sr + 6, 0, Math.PI * 2);
@@ -371,12 +391,12 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       // Dark pocket well
       ctx.beginPath();
       ctx.arc(sx, sy, sr, 0, Math.PI * 2);
-      ctx.fillStyle = isTarget ? '#041c2c' : '#080a0f';
+      ctx.fillStyle = isScratch ? '#2b0707' : isTarget ? '#041c2c' : '#080a0f';
       ctx.fill();
 
       // Pocket casting rim
-      ctx.strokeStyle = isTarget ? '#06b6d4' : '#272a38';
-      ctx.lineWidth = isTarget ? 4 : 3;
+      ctx.strokeStyle = isScratch ? '#ef4444' : isTarget ? '#06b6d4' : '#272a38';
+      ctx.lineWidth = isScratch ? 4 : isTarget ? 4 : 3;
       ctx.stroke();
 
       // Pocket ID label (counter-rotated to stay upright)
@@ -384,11 +404,11 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
       ctx.save();
       ctx.translate(sx, sy + labelOffset);
       ctx.rotate((-tableRotationDeg * Math.PI) / 180);
-      ctx.fillStyle = isTarget ? '#22d3ee' : '#64748b';
-      ctx.font = isTarget ? '700 12px "JetBrains Mono", monospace' : '700 10px "JetBrains Mono", monospace';
+      ctx.fillStyle = isScratch ? '#f87171' : isTarget ? '#22d3ee' : '#64748b';
+      ctx.font = isScratch ? '800 12px "JetBrains Mono", monospace' : isTarget ? '700 12px "JetBrains Mono", monospace' : '700 10px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(isTarget ? `🎯 ${p.id}` : p.id, 0, 0);
+      ctx.fillText(isScratch ? `⚠️ SCRATCH (${p.id})` : isTarget ? `🎯 ${p.id}` : p.id, 0, 0);
       ctx.restore();
     });
 
@@ -562,42 +582,88 @@ export const TableCanvas: React.FC<TableCanvasProps> = ({
 
       // Predicted Actual Cue Ball Trajectory & Curve
       if (guides.showPredictedPath) {
-        ctx.strokeStyle = '#e2e8f0';
-        ctx.lineWidth = 2.5;
-
-        if (aimInfo.spinStateAtImpact === 'pure_stun') {
+        if (predictedCuePath && predictedCuePath.length > 2) {
           ctx.beginPath();
-          ctx.moveTo(gbScreenX, gbScreenY);
-          const pDist = 0.5 * scale;
-          ctx.lineTo(gbScreenX + aimInfo.tangentLine.x * pDist, gbScreenY + aimInfo.tangentLine.y * pDist);
-          ctx.stroke();
+          ctx.moveTo(toScreenX(predictedCuePath[0].x), toScreenY(predictedCuePath[0].y));
+
+          for (let i = 1; i < predictedCuePath.length; i++) {
+            ctx.lineTo(toScreenX(predictedCuePath[i].x), toScreenY(predictedCuePath[i].y));
+          }
+
+          if (scratchPocketId) {
+            const pockets = getTablePockets(config);
+            const scratchP = pockets.find((p) => p.id === scratchPocketId);
+            if (scratchP) {
+              ctx.lineTo(toScreenX(scratchP.x), toScreenY(scratchP.y));
+            }
+            // High-visibility dashed Coral/Red path indicating SCRATCH
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([8, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Draw warning label along path
+            const midIdx = Math.floor(predictedCuePath.length * 0.5);
+            const midPt = predictedCuePath[midIdx];
+            if (midPt) {
+              ctx.save();
+              ctx.translate(toScreenX(midPt.x), toScreenY(midPt.y) - 14);
+              ctx.rotate((-tableRotationDeg * Math.PI) / 180);
+              ctx.fillStyle = '#ef4444';
+              ctx.font = '800 12px "JetBrains Mono", monospace';
+              ctx.textAlign = 'center';
+              ctx.fillText(`⚠️ SCRATCH IN ${scratchPocketId}!`, 0, 0);
+              ctx.restore();
+            }
+          } else {
+            // Full Safe Predicted Roll Path
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            // Ghost ball indicator at final resting point
+            const lastPt = predictedCuePath[predictedCuePath.length - 1];
+            if (lastPt) {
+              const lx = toScreenX(lastPt.x);
+              const ly = toScreenY(lastPt.y);
+              ctx.beginPath();
+              ctx.arc(lx, ly, ballR, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(56, 189, 248, 0.25)';
+              ctx.fill();
+              ctx.strokeStyle = '#38bdf8';
+              ctx.lineWidth = 1.5;
+              ctx.stroke();
+
+              // Trajectory label
+              ctx.save();
+              ctx.translate(lx + ballR + 8, ly);
+              ctx.rotate((-tableRotationDeg * Math.PI) / 180);
+              ctx.fillStyle = '#94a3b8';
+              ctx.font = '600 10px "JetBrains Mono", monospace';
+              const label =
+                aimInfo.spinStateAtImpact === 'natural_roll'
+                  ? 'Roll Path (~30°)'
+                  : aimInfo.spinStateAtImpact === 'sliding_draw'
+                  ? 'Draw Path'
+                  : 'Stun Path';
+              ctx.fillText(label, 0, 0);
+              ctx.restore();
+            }
+          }
         } else {
+          // Fallback short curve if simulation path not yet ready
+          ctx.strokeStyle = '#e2e8f0';
+          ctx.lineWidth = 2;
           ctx.beginPath();
           ctx.moveTo(gbScreenX, gbScreenY);
-
           const curveFactor = aimInfo.spinStateAtImpact === 'sliding_draw' ? -0.3 : 0.4;
           const ctrlX = gbScreenX + aimInfo.tangentLine.x * (0.3 * scale);
           const ctrlY = gbScreenY + aimInfo.tangentLine.y * (0.3 * scale);
           const endX = ctrlX + Math.cos(shot.angleRad) * (curveFactor * scale);
           const endY = ctrlY + Math.sin(shot.angleRad) * (curveFactor * scale);
-
           ctx.quadraticCurveTo(ctrlX, ctrlY, endX, endY);
           ctx.stroke();
-
-          // Trajectory label (counter-rotated)
-          ctx.save();
-          ctx.translate(endX + 6, endY);
-          ctx.rotate((-tableRotationDeg * Math.PI) / 180);
-          ctx.fillStyle = '#cbd5e1';
-          ctx.font = '600 10px "Plus Jakarta Sans", sans-serif';
-          const label =
-            aimInfo.spinStateAtImpact === 'natural_roll'
-              ? 'Natural Roll Curve (~30°)'
-              : aimInfo.spinStateAtImpact === 'sliding_draw'
-              ? 'Draw Curve (Backspin)'
-              : 'Follow Curve (Topspin)';
-          ctx.fillText(label, 0, 0);
-          ctx.restore();
         }
       }
     }

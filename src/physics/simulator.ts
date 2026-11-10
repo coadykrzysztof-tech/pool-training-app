@@ -7,7 +7,10 @@ export interface SimulationResult {
   objectBallPocketed: boolean;
   pocketedBallIds: number[];
   cueBallPocketed: boolean; // Scratch
+  cueBallPocketId: string | null; // e.g. 'P4'
+  objectBallPocketId: string | null; // e.g. 'P1'
   firstBallHitId: number | null;
+  impactFrameIndex: number | null;
   targetBallId: number | null;
   finalCuePos: Vector2D;
   separationAngleDeg: number | null;
@@ -77,8 +80,11 @@ export function simulateShot(
 
   // Metrics tracking
   let firstBallHitId: number | null = null;
+  let impactFrameIndex: number | null = null;
   let cueBallPocketed = false;
+  let cueBallPocketId: string | null = null;
   let objectBallPocketed = false;
+  let objectBallPocketId: string | null = null;
   const pocketedBallIds: number[] = [];
   let separationAngleDeg: number | null = null;
 
@@ -209,6 +215,7 @@ export function simulateShot(
             // Balls are moving toward each other
             if (b1.id === 0 && firstBallHitId === null) {
               firstBallHitId = b2.id;
+              impactFrameIndex = frames.length;
 
               // Calculate initial separation angle at collision instant
               const cbPreSpeed = Math.hypot(b1.vx, b1.vy);
@@ -263,30 +270,37 @@ export function simulateShot(
       if (b.isPocketed) continue;
 
       let captured = false;
+      let capturedPocketId: string | null = null;
 
       // P1: Top-Left (0, 0)
       if (b.x < 0.075 && b.y < 0.075 && Math.hypot(b.x, b.y) < cornerCaptureR) {
         captured = true;
+        capturedPocketId = 'P1';
       }
       // P3: Top-Right (L, 0)
       else if (b.x > L - 0.075 && b.y < 0.075 && Math.hypot(b.x - L, b.y) < cornerCaptureR) {
         captured = true;
+        capturedPocketId = 'P3';
       }
       // P4: Bottom-Left (0, W)
       else if (b.x < 0.075 && b.y > W - 0.075 && Math.hypot(b.x, b.y - W) < cornerCaptureR) {
         captured = true;
+        capturedPocketId = 'P4';
       }
       // P6: Bottom-Right (L, W)
       else if (b.x > L - 0.075 && b.y > W - 0.075 && Math.hypot(b.x - L, b.y - W) < cornerCaptureR) {
         captured = true;
+        capturedPocketId = 'P6';
       }
       // P2: Top-Side (L/2, 0)
       else if (Math.abs(b.x - L / 2) < sideCaptureHalfW && b.y <= R + 0.005 && b.vy <= 0) {
         captured = true;
+        capturedPocketId = 'P2';
       }
       // P5: Bottom-Side (L/2, W)
       else if (Math.abs(b.x - L / 2) < sideCaptureHalfW && b.y >= W - R - 0.005 && b.vy >= 0) {
         captured = true;
+        capturedPocketId = 'P5';
       }
 
       if (captured) {
@@ -298,8 +312,14 @@ export function simulateShot(
         b.omegaZ = 0;
 
         pocketedBallIds.push(b.id);
-        if (b.id === 0) cueBallPocketed = true;
-        if (targetBallId !== null && b.id === targetBallId) objectBallPocketed = true;
+        if (b.id === 0) {
+          cueBallPocketed = true;
+          if (!cueBallPocketId) cueBallPocketId = capturedPocketId;
+        }
+        if (targetBallId !== null && b.id === targetBallId) {
+          objectBallPocketed = true;
+          if (!objectBallPocketId) objectBallPocketId = capturedPocketId;
+        }
       }
     }
 
@@ -401,7 +421,10 @@ export function simulateShot(
     objectBallPocketed,
     pocketedBallIds,
     cueBallPocketed,
+    cueBallPocketId,
+    objectBallPocketId,
     firstBallHitId,
+    impactFrameIndex,
     targetBallId,
     finalCuePos: { x: finalCue.x, y: finalCue.y },
     separationAngleDeg,

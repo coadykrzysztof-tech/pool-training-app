@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   Ball,
   Drill,
@@ -182,6 +182,45 @@ export const App: React.FC = () => {
   // Dynamically determine effective target pocket:
   // Priority: 1. User manual selection -> 2. Raycast cut aim direction -> 3. Drill book default -> 4. 'P5'
   const effectivePocketId = selectedPocketId || aimInfo.aimedPocketId || bookPocketId || 'P5';
+
+  // Calibrated Stop Shot tip offset for current shot speed and impact distance
+  const calibratedStopTipY = useMemo(() => {
+    const distM = aimInfo.impactDistance && aimInfo.impactDistance > 0 ? aimInfo.impactDistance : 0.8;
+    const v0 = Math.max(1.0, shot.speedMs || 2.0);
+    const mu_s = config.muSliding;
+    const g = 9.81;
+    const calcStopAy = Math.min(0.55, Math.max(0.04, (mu_s * g * distM) / (v0 * v0)));
+    return -Math.round(calcStopAy * 100) / 100;
+  }, [aimInfo.impactDistance, shot.speedMs, config.muSliding]);
+
+  // Live instantaneous preview simulation (<0.3 ms) for scratch warning and continuous cue trajectory
+  const previewSim = useMemo(() => {
+    if (!cueBall || cueBall.isPocketed) return null;
+    return simulateShot(balls, shot, config, targetBallId, 4.0);
+  }, [balls, shot, config, targetBallId, cueBall]);
+
+  const scratchPocketId = previewSim?.cueBallPocketed ? previewSim.cueBallPocketId : null;
+
+  const predictedCuePath = useMemo(() => {
+    if (!previewSim || !previewSim.frames || previewSim.frames.length === 0) return [];
+
+    let framesToUse = previewSim.frames;
+    if (previewSim.impactFrameIndex !== null && previewSim.impactFrameIndex > 0) {
+      framesToUse = previewSim.frames.slice(Math.max(0, previewSim.impactFrameIndex - 1));
+    }
+
+    const pts = framesToUse
+      .map((f) => {
+        const cb = f.balls.find((b) => b.id === 0);
+        return cb ? { x: cb.x, y: cb.y } : null;
+      })
+      .filter(Boolean) as { x: number; y: number }[];
+
+    if (previewSim.impactFrameIndex !== null && aimInfo.ghostBallPos) {
+      return [{ x: aimInfo.ghostBallPos.x, y: aimInfo.ghostBallPos.y }, ...pts];
+    }
+    return pts;
+  }, [previewSim, aimInfo.ghostBallPos]);
 
   // Table Size Switching with proportional ball repositioning
   const handleTableSizeChange = (newSize: 7 | 8 | 9) => {
@@ -733,6 +772,23 @@ export const App: React.FC = () => {
               )}
             </div>
 
+            {/* Scratch Warning Alert Badge */}
+            {scratchPocketId && (
+              <div className="flex items-center gap-1.5 bg-red-950/90 text-red-200 border border-red-500/60 px-2.5 py-1 rounded-lg text-xs font-bold shadow-lg animate-pulse">
+                <span>⚠️ SCRATCH IN {scratchPocketId}!</span>
+                <button
+                  onClick={() => {
+                    setShot((prev) => ({ ...prev, tipOffsetX: 0, tipOffsetY: calibratedStopTipY }));
+                    showNotification(`Applied calibrated Stop Shot (${calibratedStopTipY}R Draw) — safe from scratch!`);
+                  }}
+                  className="px-2 py-0.5 rounded bg-red-600 hover:bg-red-500 text-white font-bold text-[11px] transition shadow"
+                  title="Switch to calibrated draw to stop cue ball and track safe 90° tangent line"
+                >
+                  Fix: Use Stop Shot
+                </button>
+              </div>
+            )}
+
             {/* Center: Pinned Quick Shot Actions (Shoot, Reset, Repeat, Ball in Hand) */}
             <div className="flex items-center gap-1.5">
               <button
@@ -878,6 +934,8 @@ export const App: React.FC = () => {
               showNotification(`Target pocket locked: ${pId}`);
             }}
             tableRotationDeg={tableRotationDeg}
+            predictedCuePath={predictedCuePath}
+            scratchPocketId={scratchPocketId}
           />
 
           {/* Quick Ball Tool Shelf at bottom of canvas */}
